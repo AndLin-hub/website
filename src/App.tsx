@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useState} from "react"
-import {motion} from"framer-motion"
+import {color, motion} from"framer-motion"
 function App() {
   const [name, setName] = useState("ANDIE LIN")
   const [experience, setExperience] = useState("EXPERIENCE")
@@ -18,7 +18,7 @@ function App() {
           return letters[Math.floor(Math.random()*26)]
         } )
         .join("")
-        if(count >= 10){
+        if(count >= word.length){
           clearInterval(interval)
         }
         setLetter(test)
@@ -28,13 +28,24 @@ function App() {
   const nameChange = () =>{
     changeLetters("ANDIE LIN",setName)
   }
+  const experienceChange = () =>{
+    changeLetters("EXPERIENCE",setExperience)
+  }
+  const contactChange = () =>{
+    changeLetters("CONTACT",setContact)
+  }
   useEffect(()=>{
-    setTimeout(nameChange,1600)
+    setTimeout(nameChange,1400)
+    setTimeout(experienceChange,2400)
+    setTimeout(contactChange,2500)
   },[])
   return (
     <>
-      <motion.div className="bg-black w-screen h-screen flex overflow-hidden"> 
-        <nav className='sticky top-0 flex w-screen justify-between mt-10 '>
+      <motion.div className="bg-black w-screen h-screen flex overflow-hidden"
+      animate={{ }}
+      transition={{delay:3, duration: 1}}
+      > 
+        <nav className='fixed top-0 flex w-screen justify-between mt-10 '>
         <motion.div  
           variants={{
             mid:{
@@ -45,11 +56,13 @@ function App() {
               }
             },
             end:{
-              x: "-3vw",y:"-30vh", scale:0.35,
+              x: "-3vw",y:"0", scale:0.35,
               transition:{
                 duration:1,
                 delay:2,
              }
+            },after:{
+
             }
           }}
           initial={{opacity:0, x:'40vw',y:'40vh'}}
@@ -60,7 +73,7 @@ function App() {
           }}
           > 
           <h1 className="font-sans text-transparent text-8xl bg-clip-text text-white font-slim
-          " 
+          h-10" 
           >{name}</h1>
         </motion.div>
         <motion.div className='justify-evenly w-[25vw] flex mr-10 mt-4'
@@ -83,6 +96,9 @@ function App() {
 
         </nav>
     </motion.div>
+    <div>
+      
+    </div>
     </>
   )
 }
