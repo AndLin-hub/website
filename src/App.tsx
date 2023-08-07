@@ -7,13 +7,13 @@ function App() {
   const [contact, setContact] = useState("CONTACT")
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   const changeLetters = (word:String, setLetter: Function) =>{
-    let og = word
+    //let og = word
     let count = 0
     const interval = setInterval(() =>{
         let test  = word.split("")
         .map((letter,index) =>{
           if(index < count){
-            return og[index]
+            return letter
           }
           return letters[Math.floor(Math.random()*26)]
         } )
