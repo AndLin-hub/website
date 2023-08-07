@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useState} from "react"
-import {color, motion} from"framer-motion"
+import { motion} from"framer-motion"
 function App() {
   const [name, setName] = useState("ANDIE LIN")
   const [experience, setExperience] = useState("EXPERIENCE")
@@ -97,7 +97,7 @@ function App() {
         </nav>
     </motion.div>
     <div>
-      
+
     </div>
     </>
   )
