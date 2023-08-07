@@ -1,16 +1,88 @@
 import './App.css'
+import {useEffect, useState} from "react"
 import {motion} from"framer-motion"
 function App() {
-
+  const [name, setName] = useState("ANDIE LIN")
+  const [experience, setExperience] = useState("EXPERIENCE")
+  const [contact, setContact] = useState("CONTACT")
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  const changeLetters = (word:String, setLetter: Function) =>{
+    let og = word
+    let count = 0
+    const interval = setInterval(() =>{
+        let test  = word.split("")
+        .map((letter,index) =>{
+          if(index < count){
+            return og[index]
+          }
+          return letters[Math.floor(Math.random()*26)]
+        } )
+        .join("")
+        if(count >= 10){
+          clearInterval(interval)
+        }
+        setLetter(test)
+        count++;
+    }, 50)
+  }
+  const nameChange = () =>{
+    changeLetters("ANDIE LIN",setName)
+  }
+  useEffect(()=>{
+    setTimeout(nameChange,1600)
+  },[])
   return (
     <>
-    <div className="bg-indigo-700 h-screen w-screen">
-        <motion.div className="bg-white h-20 w-20 absolute
-        left-10 top-10 rounded-xl
-        " 
-        whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }} />
-    </div>
+      <motion.div className="bg-black w-screen h-screen flex overflow-hidden"> 
+        <nav className='sticky top-0 flex w-screen justify-between mt-10 '>
+        <motion.div  
+          variants={{
+            mid:{
+              opacity:1,
+              transition:{
+                duration:1,
+                delay:1,
+              }
+            },
+            end:{
+              x: "-3vw",y:"-30vh", scale:0.35,
+              transition:{
+                duration:1,
+                delay:2,
+             }
+            }
+          }}
+          initial={{opacity:0, x:'40vw',y:'40vh'}}
+          animate={["mid","end"]}
+          transition={{
+            ease:"linear",
+            delay:1,
+          }}
+          > 
+          <h1 className="font-sans text-transparent text-8xl bg-clip-text text-white font-slim
+          " 
+          >{name}</h1>
+        </motion.div>
+        <motion.div className='justify-evenly w-[25vw] flex mr-10 mt-4'
+        initial={{opacity:0}}
+        animate={{opacity:1,transition:{delay:2,}}}>
+          <h1 className="font-sans text-white text-2xl h-10 font-slim
+          hover:bg-gray-400 hover:text-black mr-5
+          "
+          onMouseEnter={() => changeLetters("EXPERIENCE",setExperience)}
+          >
+            {experience}
+          </h1>
+          <h1 className="font-sans  text-white text-2xl h-10 pl-1 pr-1 rounded-md
+           font-slim hover:bg-white hover:text-black" 
+           onMouseEnter={() => changeLetters("CONTACT",setContact)}
+            >
+            {contact}
+            </h1>
+        </motion.div>
 
+        </nav>
+    </motion.div>
     </>
   )
 }
