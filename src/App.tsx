@@ -50,7 +50,7 @@ function App() {
       className="overflow-hidden relative"
       > 
       <motion.div 
-      style={{left:mousePosition.x -360,
+      animate={{left:mousePosition.x -360,
       top:mousePosition.y-360,}}
       transition={{duration:1}}
       className={` h-[40rem] w-[40rem] absolute rounded-full bg-gradient-to-r from-indigo-700 to-green-200 blur-xxl rotate animate-spin-slow overflow-hidden`}/>
@@ -91,13 +91,13 @@ function App() {
         <motion.div className='justify-evenly w-[25vw] flex mr-10 mt-4'
         initial={{opacity:0}}
         animate={{opacity:1,transition:{delay:2,}}}>
-          <h1 className="font-sans text-white text-2xl h-10 font-slim hover:text-black mr-5
+          <h1 className="font-sans text-white text-2xl h-10 font-slim mr-5
           "
           onMouseEnter={() => changeLetters("EXPERIENCE",setExperience)}
           >
             {experience}
           </h1>
-          <h1 className="font-sans text-white text-2xl h-10 font-slim hover:text-black mr-5
+          <h1 className="font-sans text-white text-2xl h-10 font-slimmr-5
           " 
            onMouseEnter={() => changeLetters("CONTACT",setContact)}
             >
