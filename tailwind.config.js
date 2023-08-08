@@ -5,7 +5,15 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      blur:{
+        xxl: '250px'
+      },
+      animation: {
+        'spin-slow': 'spin 10s linear infinite',
+
+      }
+    },
   },
   plugins: [],
 }

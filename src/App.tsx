@@ -2,6 +2,7 @@ import './App.css'
 import {useEffect, useState} from "react"
 import { motion} from"framer-motion"
 function App() {
+  const [mousePosition, setMousePosition] = useState({x:0 , y:0})
   const [name, setName] = useState("ANDIE LIN")
   const [experience, setExperience] = useState("EXPERIENCE")
   const [contact, setContact] = useState("CONTACT")
@@ -34,6 +35,9 @@ function App() {
   const contactChange = () =>{
     changeLetters("CONTACT",setContact)
   }
+  const onMouseMove = (e:any) =>{
+    setMousePosition({x: e.clientX ,y:e.clientY})
+  }
   useEffect(()=>{
     setTimeout(nameChange,1400)
     setTimeout(experienceChange,2400)
@@ -41,8 +45,16 @@ function App() {
   },[])
   return (
     <>
-      <motion.div className="bg-black w-screen h-screen flex overflow-hidden"
-      animate={{ }}
+      <div
+      onMouseMove={onMouseMove}
+      className="overflow-hidden relative"
+      > 
+      <motion.div 
+      style={{left:mousePosition.x -360,
+      top:mousePosition.y-360,}}
+      transition={{duration:1}}
+      className={` h-[40rem] w-[40rem] absolute rounded-full bg-gradient-to-r from-indigo-700 to-green-200 blur-xxl rotate animate-spin-slow overflow-hidden`}/>
+      <motion.div className="bg-black max-h-screen max-w-screen w-screen h-screen flex overflow-hidden"
       transition={{delay:3, duration: 1}}
       > 
         <nav className='fixed top-0 flex w-screen justify-between mt-10 '>
@@ -79,15 +91,14 @@ function App() {
         <motion.div className='justify-evenly w-[25vw] flex mr-10 mt-4'
         initial={{opacity:0}}
         animate={{opacity:1,transition:{delay:2,}}}>
-          <h1 className="font-sans text-white text-2xl h-10 font-slim
-          hover:bg-gray-400 hover:text-black mr-5
+          <h1 className="font-sans text-white text-2xl h-10 font-slim hover:text-black mr-5
           "
           onMouseEnter={() => changeLetters("EXPERIENCE",setExperience)}
           >
             {experience}
           </h1>
-          <h1 className="font-sans  text-white text-2xl h-10 pl-1 pr-1 rounded-md
-           font-slim hover:bg-white hover:text-black" 
+          <h1 className="font-sans text-white text-2xl h-10 font-slim hover:text-black mr-5
+          " 
            onMouseEnter={() => changeLetters("CONTACT",setContact)}
             >
             {contact}
@@ -99,6 +110,7 @@ function App() {
     <div>
 
     </div>
+    </div>  
     </>
   )
 }
