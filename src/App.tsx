@@ -3,7 +3,9 @@ import {useEffect, useState} from "react"
 import { motion} from"framer-motion"
 function App() {
   const [mousePosition, setMousePosition] = useState({x:0 , y:0})
+//  const [selectedId, setSelectedId] = useState<string>()
   const [name, setName] = useState("ANDIE LIN")
+  const [project, setProject] = useState("PROJECT")
   const [experience, setExperience] = useState("EXPERIENCE")
   const [contact, setContact] = useState("CONTACT")
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -35,25 +37,30 @@ function App() {
   const contactChange = () =>{
     changeLetters("CONTACT",setContact)
   }
+  const projectChange = () =>{
+    changeLetters("PROJECT",setProject)
+  }
   const onMouseMove = (e:any) =>{
     setMousePosition({x: e.clientX ,y:e.clientY})
+    console.log(e.clientY)
   }
   useEffect(()=>{
-    setTimeout(nameChange,1400)
-    setTimeout(experienceChange,2400)
-    setTimeout(contactChange,2500)
+    setTimeout(nameChange,1000)
+    setTimeout(experienceChange,2000)
+    setTimeout(contactChange,2000)
+    setTimeout(projectChange,2000)
   },[])
   return (
     <>
       <div
       onMouseMove={onMouseMove}
-      className="overflow-hidden relative"
+      className="overflow-hidden relative z-20"
       > 
       <motion.div 
       animate={{left:mousePosition.x -360,
       top:mousePosition.y-360,}}
       transition={{duration:1}}
-      className={` h-[40rem] w-[40rem] absolute rounded-full bg-gradient-to-r from-blue-400 to-green-200 blur-xxl rotate animate-spin-slow overflow-hidden`}/>
+      className={` h-[40rem] w-[40rem] fixed rounded-full bg-gradient-to-r from-blue-400 to-green-200 blur-xxl rotate animate-spin-slow overflow-hidden`}/>
       <motion.div className="bg-black max-h-screen max-w-screen w-screen h-screen flex overflow-hidden"
       transition={{delay:3, duration: 1}}
       > 
@@ -85,23 +92,29 @@ function App() {
           }}
           > 
           <h1 className="font-mono text-transparent text-8xl bg-clip-text text-white font-slim
-          h-10" 
+          h-10" onMouseEnter={nameChange} 
           >{name}</h1>
         </motion.div>
         <motion.div className='justify-evenly w-[25vw] flex mr-10 mt-4'
         initial={{opacity:0}}
         animate={{opacity:1,transition:{delay:2,}}}>
-          <h1 className="font-mono text-white text-2xl h-10 font-slim hover:text-purple-200 mr-5
+          <h1 className="font-mono text-white text-2xl h-10 font-slim  mr-5
           "
-          onMouseEnter={() => changeLetters("EXPERIENCE",setExperience)}
+          onMouseEnter={experienceChange}
           >
             {experience}
           </h1>
-          <h1 className="font-mono text-white text-2xl h-10 font-slim hover:text-indigo-200 mr-5
+          <h1 className="font-mono text-white text-2xl h-10 font-slim mr-5
           " 
-           onMouseEnter={() => changeLetters("CONTACT",setContact)}
+           onMouseEnter={contactChange}
             >
             {contact}
+            </h1>
+            <h1 className="font-mono text-white text-2xl h-10 font-slim mr-5
+          " 
+           onMouseEnter={projectChange}
+            >
+            {project}
             </h1>
         </motion.div>
 
@@ -110,6 +123,8 @@ function App() {
     <div>
 
     </div>
+
+
     </div>  
     </>
   )
