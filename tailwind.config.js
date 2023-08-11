@@ -12,6 +12,9 @@ export default {
       animation: {
         'spin-slow': 'spin 10s linear infinite',
 
+      },
+      inset:{
+        '1/8': "15%"
       }
     },
   },

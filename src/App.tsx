@@ -1,9 +1,9 @@
 import './App.css'
-import {useEffect, useState} from "react"
+import {useEffect, useState,useRef} from "react"
 import { motion} from"framer-motion"
 function App() {
+  const experienceRef = useRef<HTMLDivElement>(null)
   const [mousePosition, setMousePosition] = useState({x:0 , y:0})
-//  const [selectedId, setSelectedId] = useState<string>()
   const [name, setName] = useState("ANDIE LIN")
   const [project, setProject] = useState("PROJECT")
   const [experience, setExperience] = useState("EXPERIENCE")
@@ -44,6 +44,10 @@ function App() {
     setMousePosition({x: e.clientX ,y:e.clientY})
     console.log(e.clientY)
   }
+
+  const focusExperiment = () =>{
+    experienceRef?.current?.scrollIntoView({behavior:'smooth'})
+  }
   useEffect(()=>{
     setTimeout(nameChange,1000)
     setTimeout(experienceChange,2000)
@@ -64,7 +68,7 @@ function App() {
       <motion.div className="bg-black max-h-screen max-w-screen w-screen h-screen flex overflow-hidden"
       transition={{delay:3, duration: 1}}
       > 
-        <nav className='fixed top-0 flex w-screen justify-between mt-10 '>
+        <nav className='fixed top-0 flex w-screen justify-between mt-10 z-20'>
         <motion.div  
           variants={{
             mid:{
@@ -101,20 +105,21 @@ function App() {
           <h1 className="font-mono text-white text-2xl h-10 font-slim  mr-5
           "
           onMouseEnter={experienceChange}
+          onClick={focusExperiment}
           >
             {experience}
           </h1>
           <h1 className="font-mono text-white text-2xl h-10 font-slim mr-5
           " 
-           onMouseEnter={contactChange}
-            >
-            {contact}
-            </h1>
-            <h1 className="font-mono text-white text-2xl h-10 font-slim mr-5
-          " 
            onMouseEnter={projectChange}
             >
             {project}
+            </h1>
+          <h1 className="font-mono text-white text-2xl h-10 font-slim mr-5
+          " 
+           onMouseEnter={contactChange}
+            >
+            {contact}
             </h1>
         </motion.div>
 
@@ -123,7 +128,69 @@ function App() {
     <div>
 
     </div>
-
+    <div className=' bg-black flex flex-col z10' ref={experienceRef}>
+      <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40">Experience</motion.h6>
+      <motion.div layoutId={"as"} className="bg-gradient-to-l
+        p-4
+        from-blue-700 to-fuchsia-700
+        bordered-xl h-[20vh] w-[21vw] relative left-1/4 rounded-xl mb-10 ">
+          <motion.h5 className="text-white" >
+            Software Engineering Intern
+          </motion.h5>
+          <motion.h2 className="text-white text-6xl font-black">
+            Loan Options
+          </motion.h2>
+      </motion.div>
+      <motion.div layoutId={"as"}className="bg-gradient-to-r
+        from-blue-700 to-purple-600
+        p-4
+        bordered-xl h-[20vh] w-[21vw] relative left-2/4 rounded-xl mb-10">
+          <motion.h5 className="text-white">
+            Customer Service
+          </motion.h5>
+          <motion.h2 className=" text-white text-6xl font-black">
+            BWS
+          </motion.h2>
+      </motion.div>
+      <motion.div layoutId={"as"}className="bg-gradient-to-r
+        p-4
+        from-rose-500 to-blue-700
+        bordered-xl h-[20vh] w-[21vw] relative left-1/4 rounded-xl mb-10">
+          <motion.h5 className="text-white">
+            Customer Service
+          </motion.h5>
+          <motion.h2 className="text-white text-6xl font-black">
+            Chicken Licken Good
+          </motion.h2>
+      </motion.div>
+      <motion.div layoutId={"as"}className="bg-gradient-to-l
+        p-4
+        from-red-400 to-blue-500
+        
+        bordered-xl h-[20vh] w-[21vw] relative left-2/4 rounded-xl mb-10">
+          <motion.h5 className="text-white">
+            Customer Service
+          </motion.h5>
+          <motion.h2 className="text-white text-6xl font-black">
+            Cignall
+          </motion.h2>
+      </motion.div>
+    </div>
+    <div className=' bg-black flex flex-col z10' >
+    <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40">Project</motion.h6>
+    <motion.div>
+      Cygrogenic fridge 
+    </motion.div>
+    <motion.div>
+      e-restuarant
+    </motion.div>
+    <motion.div>
+      Bank Statement
+    </motion.div>
+    </div>
+    <div className=' bg-black flex flex-col z10' >
+    <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40">Contact</motion.h6>
+    </div>
 
     </div>  
     </>
