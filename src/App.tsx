@@ -1,13 +1,23 @@
 import './App.css'
 import {useEffect, useState,useRef} from "react"
-import { motion} from"framer-motion"
+import { motion, useInView} from"framer-motion"
 function App() {
   const experienceRef = useRef<HTMLDivElement>(null)
+  const projectRef = useRef<HTMLDivElement>(null)
+  const contactRef = useRef<HTMLDivElement>(null)
+  const loanRef = useRef<HTMLDivElement>(null)
+  const chiRef =useRef<HTMLDivElement>(null)
+  const bwsRef =useRef<HTMLDivElement>(null)
+  const cigRef = useRef<HTMLDivElement>(null)
   const [mousePosition, setMousePosition] = useState({x:0 , y:0})
   const [name, setName] = useState("ANDIE LIN")
   const [project, setProject] = useState("PROJECT")
   const [experience, setExperience] = useState("EXPERIENCE")
   const [contact, setContact] = useState("CONTACT")
+  const loanInView = useInView(loanRef, {once:true})
+  const chiInView = useInView(chiRef, {once:true})
+  const bwsInView = useInView(bwsRef, {once:true})
+  const cigInView = useInView(cigRef, {once:true})
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   const changeLetters = (word:String, setLetter: Function) =>{
     //let og = word
@@ -47,6 +57,12 @@ function App() {
 
   const focusExperiment = () =>{
     experienceRef?.current?.scrollIntoView({behavior:'smooth'})
+  }
+  const focusProject = () =>{
+    projectRef?.current?.scrollIntoView({behavior:'smooth'})
+  }
+  const focusContact = () =>{
+    contactRef?.current?.scrollIntoView({behavior:'smooth'})
   }
   useEffect(()=>{
     setTimeout(nameChange,1000)
@@ -99,7 +115,7 @@ function App() {
           h-10" onMouseEnter={nameChange} 
           >{name}</h1>
         </motion.div>
-        <motion.div className='justify-evenly w-[25vw] flex mr-10 mt-4'
+        <motion.div className='justify-evenly w-[25vw] flex mr-20 mt-4'
         initial={{opacity:0}}
         animate={{opacity:1,transition:{delay:2,}}}>
           <h1 className="font-mono text-white text-2xl h-10 font-slim  mr-5
@@ -112,12 +128,14 @@ function App() {
           <h1 className="font-mono text-white text-2xl h-10 font-slim mr-5
           " 
            onMouseEnter={projectChange}
+           onClick={focusProject}
             >
             {project}
             </h1>
-          <h1 className="font-mono text-white text-2xl h-10 font-slim mr-5
+          <h1 className="font-mono text-white text-2xl h-10 font-slim
           " 
            onMouseEnter={contactChange}
+           onClick={focusContact}
             >
             {contact}
             </h1>
@@ -128,55 +146,121 @@ function App() {
     <div>
 
     </div>
-    <div className=' bg-black flex flex-col z10' ref={experienceRef}>
-      <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40">Experience</motion.h6>
-      <motion.div layoutId={"as"} className="bg-gradient-to-l
+    <div className=' bg-black flex flex-col z10' 
+        ref={experienceRef}>
+      <motion.h6 
+      className="text-white relative text-8xl font-black left-1/8 mt-40 mb-40">Experience</motion.h6>
+      <motion.div 
+      >
+      <motion.div 
+        whileHover={{scale:1.2}}
+        whileTap={{scale:0.9}}
+        layoutId={"as"} 
+        ref={loanRef}
+        className="bg-gradient-to-l
         p-4
         from-blue-700 to-fuchsia-700
-        bordered-xl h-[20vh] w-[21vw] relative left-1/4 rounded-xl mb-10 ">
-          <motion.h5 className="text-white" >
+        bordered-xl h-60 w-[26rem] relative left-3/10 rounded-xl mb-10 "
+        >
+          <motion.h5
+          style={{
+            opacity:loanInView ? 1 : 0,
+            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
+          }} 
+          className="text-white" >
             Software Engineering Intern
           </motion.h5>
           <motion.h2 className="text-white text-6xl font-black">
             Loan Options
           </motion.h2>
       </motion.div>
-      <motion.div layoutId={"as"}className="bg-gradient-to-r
+      </motion.div>
+      <motion.div 
+      className="ml-[15rem]"
+      style={{
+        opacity: bwsInView ? 1 : 0,
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+      }}>
+      <motion.div layoutId={"as"}
+        ref={bwsRef}
+        whileHover={{scale:1.2}}
+        whileTap={{scale:0.9}}
+        className="bg-gradient-to-r
         from-blue-700 to-purple-600
         p-4
-        bordered-xl h-[20vh] w-[21vw] relative left-2/4 rounded-xl mb-10">
-          <motion.h5 className="text-white">
+        bordered-xl h-60 w-[26rem] relative left-2/4 rounded-xl mb-10
+        "
+         >
+          <motion.h5 className="text-white"
+          style={{
+            opacity:loanInView ? 1 : 0,
+            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
+          }} >
             Customer Service
           </motion.h5>
           <motion.h2 className=" text-white text-6xl font-black">
             BWS
           </motion.h2>
       </motion.div>
-      <motion.div layoutId={"as"}className="bg-gradient-to-r
+      </motion.div>
+      
+      <motion.div 
+      style={{
+        opacity: chiInView ? 1 : 0,
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+      }}>
+      <motion.div layoutId={"as"}
+        ref={chiRef}
+        className="bg-gradient-to-r
         p-4
         from-rose-500 to-blue-700
-        bordered-xl h-[20vh] w-[21vw] relative left-1/4 rounded-xl mb-10">
-          <motion.h5 className="text-white">
+        bordered-xl h-60 w-[26rem] relative left-3/10 rounded-xl mb-10"
+        whileHover={{scale:1.2}}
+        whileTap={{scale:0.9}}
+         >
+          <motion.h5 className="text-white"
+          style={{
+            opacity:loanInView ? 1 : 0,
+            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
+          }} >  
             Customer Service
           </motion.h5>
           <motion.h2 className="text-white text-6xl font-black">
             Chicken Licken Good
           </motion.h2>
       </motion.div>
-      <motion.div layoutId={"as"}className="bg-gradient-to-l
+      </motion.div>
+     <motion.div
+     className="ml-[15rem]"
+     style={{
+      opacity: cigInView ? 1 : 0,
+      transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+      }}>
+     <motion.div layoutId={"as"}
+        ref={cigRef}
+        className="bg-gradient-to-l
         p-4
-        from-red-400 to-blue-500
-        
-        bordered-xl h-[20vh] w-[21vw] relative left-2/4 rounded-xl mb-10">
-          <motion.h5 className="text-white">
+        from-red-400 to-blue-700
+        bordered-xl h-60 w-[26rem] relative left-2/4 rounded-xl mb-10
+        "
+        whileHover={{scale:1.2}}
+        whileTap={{scale:0.9}}
+        >
+          <motion.h5 className="text-white"
+          style={{
+            opacity:loanInView ? 1 : 0,
+            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
+          }} >
             Customer Service
           </motion.h5>
           <motion.h2 className="text-white text-6xl font-black">
             Cignall
           </motion.h2>
       </motion.div>
+     </motion.div>
+     
     </div>
-    <div className=' bg-black flex flex-col z10' >
+    <div className=' bg-black flex flex-col z10' ref={projectRef}>
     <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40">Project</motion.h6>
     <motion.div>
       Cygrogenic fridge 
@@ -188,7 +272,7 @@ function App() {
       Bank Statement
     </motion.div>
     </div>
-    <div className=' bg-black flex flex-col z10' >
+    <div className=' bg-black flex flex-col z10' ref={contactRef} >
     <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40">Contact</motion.h6>
     </div>
 
