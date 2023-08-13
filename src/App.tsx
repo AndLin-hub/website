@@ -70,10 +70,10 @@ function App() {
     contactRef?.current?.scrollIntoView({behavior:'smooth'})
   }
   const animate1 = () =>{
-    card1Animate(card1.current,{rotate:45, translateX: 200, translateY: -10})
+    card1Animate(card1.current,{rotate:45, translateX: 410, translateY: -60})
   }
   const animate2 = () =>{
-    card2Animate(card2.current,{rotate:-45, translateX: -200, translateY: -10})
+    card2Animate(card2.current,{rotate:-45, translateX: -300, translateY: 210})
   }
   const animate3 = () =>{
     card3Animate(card3.current,{opacity: 1,translateY: -60})
@@ -287,20 +287,27 @@ function App() {
     <div className=' bg-black flex flex-col z10 h-[80vh]' ref={projectRef}>
     <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40">Project</motion.h6>
     <motion.div>
-    <motion.div className="h-[35vh] w-[15vw] bg-gradient-to-b from-red-600 to-indigo-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl"
+    <div
     ref={card1}
+    className="left-4/10 absolute z-10"
+    >
+    <motion.div className="h-[35vh] w-[15vw] bg-gradient-to-b from-red-600 to-indigo-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl"
     whileHover={{ translateY:-60}}
     whileTap={{scale:0.9}}
     >
       Cygrogenic fridge 
     </motion.div>
-    <motion.div className="h-[35vh] w-[15vw] bg-gradient-to-b from-blue-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl "
-    ref={card2}
+    </div>
+    <div ref={card2} className="z-30 left-4/10 absolute">
+    <motion.div
+    ref={card2} 
+    className="h-[35vh] w-[15vw] bg-gradient-to-b from-blue-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl "
     whileHover={{ translateY:-60}}
     whileTap={{scale:0.9}}
     >
       E-restuarant
-    </motion.div>
+    </motion.div>     
+    </div>
     <div ref={card3} className="z-30 left-4/10 absolute">
     <motion.div className="h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-indigo-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl
     
