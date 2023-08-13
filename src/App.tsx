@@ -87,7 +87,7 @@ function App() {
   },[card2IsInView])
   useEffect(()=>{
     if(card3IsInView){
-      card3Animate(card3.current,{translateY:-60 }, {delay: (0.7)})
+      card3Animate(card3.current,{translateY:"-2vh", translateX:"-1vw" }, {delay: (0.7)})
   }
   },[card3IsInView])
 
