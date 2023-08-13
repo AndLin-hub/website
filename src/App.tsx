@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useState,useRef} from "react"
-import { motion, useInView,useAnimate} from"framer-motion"
+import { motion, useInView,useAnimate, stagger} from"framer-motion"
 function App() {
   const experienceRef = useRef<HTMLDivElement>(null)
   const projectRef = useRef<HTMLDivElement>(null)
@@ -69,15 +69,6 @@ function App() {
   const focusContact = () =>{
     contactRef?.current?.scrollIntoView({behavior:'smooth'})
   }
-  const animate1 = () =>{
-    card1Animate(card1.current,{rotate:45, translateX: 410, translateY: -60})
-  }
-  const animate2 = () =>{
-    card2Animate(card2.current,{rotate:-45, translateX: -300, translateY: 210})
-  }
-  const animate3 = () =>{
-    card3Animate(card3.current,{opacity: 1,translateY: -60})
-  }
   useEffect(()=>{
     setTimeout(nameChange,1000)
     setTimeout(experienceChange,2000)
@@ -86,18 +77,18 @@ function App() {
   },[])
   useEffect(()=>{
     if(card1IsInView){
-      setTimeout(animate1,700)
+      card1Animate(card1.current, {rotate:-35, translateX:"-17vw", translateY: '17vh'},{delay: (0.7)})
     }
   },[card1IsInView])
   useEffect(()=>{
     if(card2IsInView){
-      setTimeout(animate2,700)
-    }
+      card2Animate(card2.current,{rotate:35, translateX:"17vw"} , {delay: (0.7)})
+  }
   },[card2IsInView])
   useEffect(()=>{
     if(card3IsInView){
-      setTimeout(animate3,700)
-    }
+      card3Animate(card3.current,{translateY:-60 }, {delay: (0.7)})
+  }
   },[card3IsInView])
 
   return (
@@ -289,26 +280,26 @@ function App() {
     <motion.div>
     <div
     ref={card1}
-    className="left-4/10 absolute z-10"
+    className="left-4/10 absolute z-10 origin-bottom-left"
     >
-    <motion.div className="h-[35vh] w-[15vw] bg-gradient-to-b from-red-600 to-indigo-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl"
+    <motion.div className="h-[42vh] w-[15vw] bg-gradient-to-b from-red-600 to-indigo-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl"
     whileHover={{ translateY:-60}}
     whileTap={{scale:0.9}}
     >
       Cygrogenic fridge 
     </motion.div>
     </div>
-    <div ref={card2} className="z-30 left-4/10 absolute">
+    <div ref={card2} className="z-30 left-4/10 absolute origin-bottom-left">
     <motion.div
     ref={card2} 
-    className="h-[35vh] w-[15vw] bg-gradient-to-b from-blue-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl "
+    className="h-[42vh] w-[15vw] bg-gradient-to-b from-blue-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl "
     whileHover={{ translateY:-60}}
     whileTap={{scale:0.9}}
     >
       E-restuarant
     </motion.div>     
     </div>
-    <div ref={card3} className="z-30 left-4/10 absolute">
+    <div ref={card3} className="z-30 left-4/10 absolute origin-bottom-left">
     <motion.div className="h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-indigo-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl
     
     "
