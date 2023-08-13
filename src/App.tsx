@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useState,useRef} from "react"
-import { motion, useInView} from"framer-motion"
+import { motion, useInView,useAnimate} from"framer-motion"
 function App() {
   const experienceRef = useRef<HTMLDivElement>(null)
   const projectRef = useRef<HTMLDivElement>(null)
@@ -9,6 +9,12 @@ function App() {
   const chiRef =useRef<HTMLDivElement>(null)
   const bwsRef =useRef<HTMLDivElement>(null)
   const cigRef = useRef<HTMLDivElement>(null)
+  const [card1, card1Animate] = useAnimate()
+  const [card2,card2Animate] = useAnimate()
+  const [card3,card3Animate] = useAnimate()
+  const card1IsInView = useInView(card1)
+  const card2IsInView = useInView(card2)
+  const card3IsInView = useInView(card3)
   const [mousePosition, setMousePosition] = useState({x:0 , y:0})
   const [name, setName] = useState("ANDIE LIN")
   const [project, setProject] = useState("PROJECT")
@@ -52,7 +58,6 @@ function App() {
   }
   const onMouseMove = (e:any) =>{
     setMousePosition({x: e.clientX ,y:e.clientY})
-    console.log(e.clientY)
   }
 
   const focusExperiment = () =>{
@@ -64,12 +69,37 @@ function App() {
   const focusContact = () =>{
     contactRef?.current?.scrollIntoView({behavior:'smooth'})
   }
+  const animate1 = () =>{
+    card1Animate(card1.current,{rotate:45, translateX: 200, translateY: -10})
+  }
+  const animate2 = () =>{
+    card2Animate(card2.current,{rotate:-45, translateX: -200, translateY: -10})
+  }
+  const animate3 = () =>{
+    card3Animate(card3.current,{translateY: -60})
+  }
   useEffect(()=>{
     setTimeout(nameChange,1000)
     setTimeout(experienceChange,2000)
     setTimeout(contactChange,2000)
     setTimeout(projectChange,2000)
   },[])
+  useEffect(()=>{
+    if(card1IsInView){
+      setTimeout(animate1,700)
+    }
+  },[card1IsInView])
+  useEffect(()=>{
+    if(card2IsInView){
+      setTimeout(animate2,700)
+    }
+  },[card2IsInView])
+  useEffect(()=>{
+    if(card3IsInView){
+      setTimeout(animate3,700)
+    }
+  },[card3IsInView])
+
   return (
     <>
       <div
@@ -151,6 +181,10 @@ function App() {
       <motion.h6 
       className="text-white relative text-8xl font-black left-1/8 mt-40 mb-40">Experience</motion.h6>
       <motion.div 
+      style={{
+        opacity: loanInView ? 1 : 0,
+        transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
+      }}
       >
       <motion.div 
         whileHover={{scale:1.2}}
@@ -160,18 +194,17 @@ function App() {
         className="bg-gradient-to-l
         p-4
         from-blue-700 to-fuchsia-700
-        bordered-xl h-60 w-[26rem] relative left-3/10 rounded-xl mb-10 "
+        bordered-xl h-[25vh] w-[21vw] relative left-3/10 rounded-xl mb-10 "
         >
           <motion.h5
-          style={{
-            opacity:loanInView ? 1 : 0,
-            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
-          }} 
           className="text-white" >
             Software Engineering Intern
           </motion.h5>
           <motion.h2 className="text-white text-6xl font-black">
-            Loan Options
+            Loan
+          </motion.h2>
+          <motion.h2 className="text-white text-6xl font-black">
+            Options
           </motion.h2>
       </motion.div>
       </motion.div>
@@ -188,14 +221,10 @@ function App() {
         className="bg-gradient-to-r
         from-blue-700 to-purple-600
         p-4
-        bordered-xl h-60 w-[26rem] relative left-2/4 rounded-xl mb-10
+        bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-10
         "
          >
-          <motion.h5 className="text-white"
-          style={{
-            opacity:loanInView ? 1 : 0,
-            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
-          }} >
+          <motion.h5 className="text-white">
             Customer Service
           </motion.h5>
           <motion.h2 className=" text-white text-6xl font-black">
@@ -214,19 +243,18 @@ function App() {
         className="bg-gradient-to-r
         p-4
         from-rose-500 to-blue-700
-        bordered-xl h-60 w-[26rem] relative left-3/10 rounded-xl mb-10"
+        bordered-xl h-[25vh] w-[21vw] relative left-3/10 rounded-xl mb-10"
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
          >
-          <motion.h5 className="text-white"
-          style={{
-            opacity:loanInView ? 1 : 0,
-            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
-          }} >  
+          <motion.h5 className="text-white">  
             Customer Service
           </motion.h5>
           <motion.h2 className="text-white text-6xl font-black">
-            Chicken Licken Good
+            Chicken
+          </motion.h2>
+          <motion.h2 className="text-white text-6xl font-black">
+            Licken Good
           </motion.h2>
       </motion.div>
       </motion.div>
@@ -241,16 +269,12 @@ function App() {
         className="bg-gradient-to-l
         p-4
         from-red-400 to-blue-700
-        bordered-xl h-60 w-[26rem] relative left-2/4 rounded-xl mb-10
+        bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-10
         "
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
         >
-          <motion.h5 className="text-white"
-          style={{
-            opacity:loanInView ? 1 : 0,
-            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s"
-          }} >
+          <motion.h5 className="text-white" >
             Customer Service
           </motion.h5>
           <motion.h2 className="text-white text-6xl font-black">
@@ -260,20 +284,38 @@ function App() {
      </motion.div>
      
     </div>
-    <div className=' bg-black flex flex-col z10' ref={projectRef}>
+    <div className=' bg-black flex flex-col z10 h-[80vh]' ref={projectRef}>
     <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40">Project</motion.h6>
     <motion.div>
+    <motion.div className="h-[35vh] w-[15vw] bg-gradient-to-b from-red-600 to-indigo-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl"
+    ref={card1}
+    whileHover={{ translateY:-60}}
+    whileTap={{scale:0.9}}
+    >
       Cygrogenic fridge 
     </motion.div>
-    <motion.div>
-      e-restuarant
+    <motion.div className="h-[35vh] w-[15vw] bg-gradient-to-b from-blue-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl "
+    ref={card2}
+    whileHover={{ translateY:-60}}
+    whileTap={{scale:0.9}}
+    >
+      E-restuarant
     </motion.div>
-    <motion.div>
+    <div ref={card3} className="z-30 left-4/10 absolute">
+    <motion.div className="h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-indigo-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl
+    
+    "
+    whileHover={{ translateY:-60}}
+    whileTap={{scale:0.9}}
+    >
       Bank Statement
     </motion.div>
     </div>
-    <div className=' bg-black flex flex-col z10' ref={contactRef} >
-    <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40">Contact</motion.h6>
+   
+    </motion.div>
+    </div>
+    <div className=' bg-black flex flex-col z10 ' ref={contactRef} >
+    <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40 ">Contact</motion.h6>
     </div>
 
     </div>  
