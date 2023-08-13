@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useState,useRef} from "react"
-import { motion, useInView,useAnimate, stagger} from"framer-motion"
+import { motion, useInView,useAnimate} from"framer-motion"
 function App() {
   const experienceRef = useRef<HTMLDivElement>(null)
   const projectRef = useRef<HTMLDivElement>(null)
