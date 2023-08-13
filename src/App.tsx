@@ -76,7 +76,7 @@ function App() {
     card2Animate(card2.current,{rotate:-45, translateX: -200, translateY: -10})
   }
   const animate3 = () =>{
-    card3Animate(card3.current,{translateY: -60})
+    card3Animate(card3.current,{opacity: 1,translateY: -60})
   }
   useEffect(()=>{
     setTimeout(nameChange,1000)
@@ -110,7 +110,7 @@ function App() {
       animate={{left:mousePosition.x -360,
       top:mousePosition.y-360,}}
       transition={{duration:1}}
-      className={` h-[40rem] w-[40rem] fixed rounded-full bg-gradient-to-r from-blue-400 to-green-200 blur-xxl rotate animate-spin-slow overflow-hidden`}/>
+      className={` h-[40rem] w-[40rem] fixed rounded-full bg-gradient-to-r from-purple-500 to-blue-500 blur-xxl rotate animate-spin-slow overflow-hidden`}/>
       <motion.div className="bg-black max-h-screen max-w-screen w-screen h-screen flex overflow-hidden"
       transition={{delay:3, duration: 1}}
       > 
