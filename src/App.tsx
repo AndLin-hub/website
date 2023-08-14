@@ -300,7 +300,7 @@ function App() {
      </motion.div>
      
     </div>
-    <div className=' bg-black flex flex-col z10 h-[80vh]' ref={projectRef}>
+    <div className=' bg-black flex flex-col z10 h-[100vh]' ref={projectRef}>
     <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40">Project</motion.h6>
     <motion.div>
     <div
