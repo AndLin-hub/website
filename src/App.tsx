@@ -132,28 +132,28 @@ function App() {
             delay:1,
           }}
           > 
-          <h1 className="font-mono text-transparent text-8xl bg-clip-text text-white font-slim
+          <h1 className="font-mono text-transparent text-[4vw] bg-clip-text text-white font-slim
           h-10" onMouseEnter={nameChange} 
           >{name}</h1>
         </motion.div>
         <motion.div className='justify-evenly w-[25vw] flex mr-20 mt-4'
         initial={{opacity:0}}
         animate={{opacity:1,transition:{delay:2,}}}>
-          <h1 className="font-mono text-white text-2xl h-10 font-slim  mr-5
+          <h1 className="font-mono text-white text-[1vw] h-10 font-slim  mr-5
           "
           onMouseEnter={experienceChange}
           onClick={focusExperiment}
           >
             {experience}
           </h1>
-          <h1 className="font-mono text-white text-2xl h-10 font-slim mr-5
+          <h1 className="font-mono text-white text-[1vw] h-10 font-slim mr-5
           " 
            onMouseEnter={projectChange}
            onClick={focusProject}
             >
             {project}
             </h1>
-          <h1 className="font-mono text-white text-2xl h-10 font-slim
+          <h1 className="font-mono text-white text-[1vw] h-10 font-slim
           " 
            onMouseEnter={contactChange}
            onClick={focusContact}
@@ -170,7 +170,7 @@ function App() {
     <div className=' bg-black flex flex-col z10' 
         ref={experienceRef}>
       <motion.h6 
-      className="text-white relative text-8xl font-black left-1/8 mt-40 mb-40">Experience</motion.h6>
+      className="text-white relative text-[4vw] font-black left-1/8 mt-40 mb-40">Experience</motion.h6>
       <motion.div 
       style={{
         opacity: loanInView ? 1 : 0,
@@ -301,7 +301,7 @@ function App() {
      
     </div>
     <div className=' bg-black flex flex-col z10 h-[100vh]' ref={projectRef}>
-    <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40">Project</motion.h6>
+    <motion.h6 className="text-white relative text-[4vw] font-black left-1/8 mb-40">Project</motion.h6>
     <motion.div>
     <div
     ref={card1}
@@ -338,7 +338,7 @@ function App() {
     </motion.div>
     </div>
     <div className=' bg-black flex flex-col z10 ' ref={contactRef} >
-    <motion.h6 className="text-white relative text-8xl font-black left-1/8 mb-40 ">Contact</motion.h6>
+    <motion.h6 className="text-white relative text-[4vw] font-black left-1/8 mb-40 ">Contact</motion.h6>
     </div>
 
     </div>  
