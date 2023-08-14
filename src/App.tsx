@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useState,useRef} from "react"
-import { motion, useInView,useAnimate} from"framer-motion"
+import { motion, useInView,useAnimate, AnimatePresence} from"framer-motion"
 function App() {
   const experienceRef = useRef<HTMLDivElement>(null)
   const projectRef = useRef<HTMLDivElement>(null)
@@ -9,6 +9,7 @@ function App() {
   const chiRef =useRef<HTMLDivElement>(null)
   const bwsRef =useRef<HTMLDivElement>(null)
   const cigRef = useRef<HTMLDivElement>(null)
+  const [selectCard, setSelectCard] = useState<string>()
   const [card1, card1Animate] = useAnimate()
   const [card2,card2Animate] = useAnimate()
   const [card3,card3Animate] = useAnimate()
@@ -26,7 +27,6 @@ function App() {
   const cigInView = useInView(cigRef, {once:true})
   const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
   const changeLetters = (word:String, setLetter: Function) =>{
-    //let og = word
     let count = 0
     const interval = setInterval(() =>{
         let test  = word.split("")
@@ -180,7 +180,9 @@ function App() {
       <motion.div 
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
-        layoutId={"as"} 
+        onClick ={() => {setSelectCard("intern")}}
+        layoutId={"intern"} 
+        layout
         ref={loanRef}
         className="bg-gradient-to-l
         p-4
@@ -199,6 +201,29 @@ function App() {
           </motion.h2>
       </motion.div>
       </motion.div>
+      <AnimatePresence>
+      {
+        selectCard == "intern" && 
+        <motion.div layoutId={selectCard} className="bg-gradient-to-l
+        p-4
+        from-blue-700 to-fuchsia-700
+        bordered-xl h-[50vh] w-[50vw] relative left-3/10 rounded-xl mb-10 z-50">
+          <div className="flex justify-between">
+          <motion.h5
+          className="text-white" >
+            Software Engineering Intern
+          </motion.h5>
+          <motion.button 
+          className='w-10 h-10 bg-purple-500  rounded-3xl'
+          onClick={() => setSelectCard('')}>X</motion.button>
+          </div>
+          <motion.h2 className="text-white text-6xl font-black">
+            Loan Options
+          </motion.h2>
+        </motion.div>
+        
+      }
+      </AnimatePresence>
       <motion.div 
       className="ml-[15rem]"
       style={{
