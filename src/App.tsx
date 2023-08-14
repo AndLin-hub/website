@@ -187,7 +187,7 @@ function App() {
         className="bg-gradient-to-l
         p-4
         from-blue-700 to-fuchsia-700
-        bordered-xl h-[25vh] w-[21vw] relative left-3/10 rounded-xl mb-10 "
+        bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw] "
         >
           <motion.h5
           className="text-white" >
@@ -237,7 +237,7 @@ function App() {
         className="bg-gradient-to-r
         from-blue-700 to-purple-600
         p-4
-        bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-10
+        bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw]
         "
          >
           <motion.h5 className="text-white">
@@ -259,7 +259,7 @@ function App() {
         className="bg-gradient-to-r
         p-4
         from-rose-500 to-blue-700
-        bordered-xl h-[25vh] w-[21vw] relative left-3/10 rounded-xl mb-10"
+        bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw]"
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
          >
@@ -285,7 +285,7 @@ function App() {
         className="bg-gradient-to-l
         p-4
         from-red-400 to-blue-700
-        bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-10
+        bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw]
         "
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
