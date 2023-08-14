@@ -193,10 +193,10 @@ function App() {
           className="text-white" >
             Software Engineering Intern
           </motion.h5>
-          <motion.h2 className="text-white text-6xl font-black">
+          <motion.h2 className="text-white text-[3vw] font-black">
             Loan
           </motion.h2>
-          <motion.h2 className="text-white text-6xl font-black">
+          <motion.h2 className="text-white text-[3vw] font-black">
             Options
           </motion.h2>
       </motion.div>
@@ -243,7 +243,7 @@ function App() {
           <motion.h5 className="text-white">
             Customer Service
           </motion.h5>
-          <motion.h2 className=" text-white text-6xl font-black">
+          <motion.h2 className=" text-white text-[3vw] font-black">
             BWS
           </motion.h2>
       </motion.div>
@@ -266,10 +266,10 @@ function App() {
           <motion.h5 className="text-white">  
             Customer Service
           </motion.h5>
-          <motion.h2 className="text-white text-6xl font-black">
+          <motion.h2 className="text-white text-[3vw] font-black">
             Chicken
           </motion.h2>
-          <motion.h2 className="text-white text-6xl font-black">
+          <motion.h2 className="text-white text-[3vw] font-black">
             Licken Good
           </motion.h2>
       </motion.div>
@@ -293,7 +293,7 @@ function App() {
           <motion.h5 className="text-white" >
             Customer Service
           </motion.h5>
-          <motion.h2 className="text-white text-6xl font-black">
+          <motion.h2 className="text-white text-[4vw] font-black">
             Cignall
           </motion.h2>
       </motion.div>
