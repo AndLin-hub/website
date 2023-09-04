@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useState,useRef} from "react"
-import { motion, useInView, AnimatePresence, stagger} from"framer-motion"
+import { motion, useInView} from"framer-motion"
 function App() {
   const experienceRef = useRef<HTMLDivElement>(null)
   const projectRef = useRef<HTMLDivElement>(null)
@@ -179,7 +179,10 @@ function App() {
             Options
           </motion.h2>
         {
-        selectCard == "intern"
+        selectCard == "intern" &&
+        <motion.div>
+
+        </motion.div>
 
         
         }
