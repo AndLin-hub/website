@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useState,useRef} from "react"
-import { motion, useInView,useAnimate, AnimatePresence} from"framer-motion"
+import { motion, useInView, AnimatePresence, stagger} from"framer-motion"
 function App() {
   const experienceRef = useRef<HTMLDivElement>(null)
   const projectRef = useRef<HTMLDivElement>(null)
@@ -10,12 +10,6 @@ function App() {
   const bwsRef =useRef<HTMLDivElement>(null)
   const cigRef = useRef<HTMLDivElement>(null)
   const [selectCard, setSelectCard] = useState<string>()
-  const [card1, card1Animate] = useAnimate()
-  const [card2,card2Animate] = useAnimate()
-  const [card3,card3Animate] = useAnimate()
-  const card1IsInView = useInView(card1)
-  const card2IsInView = useInView(card2)
-  const card3IsInView = useInView(card3)
   const [mousePosition, setMousePosition] = useState({x:0 , y:0})
   const [name, setName] = useState("ANDIE LIN")
   const [project, setProject] = useState("PROJECT")
@@ -75,21 +69,6 @@ function App() {
     setTimeout(contactChange,2000)
     setTimeout(projectChange,2000)
   },[])
-  useEffect(()=>{
-    if(card1IsInView){
-      card1Animate(card1.current, {rotate:-35, translateX:"-17vw", translateY: '17vh'},{delay: (0.7)})
-    }
-  },[card1IsInView])
-  useEffect(()=>{
-    if(card2IsInView){
-      card2Animate(card2.current,{rotate:35, translateX:"17vw"} , {delay: (0.7)})
-  }
-  },[card2IsInView])
-  useEffect(()=>{
-    if(card3IsInView){
-      card3Animate(card3.current,{translateY:"-2vh", translateX:"-1vw" }, {delay: (0.7)})
-  }
-  },[card3IsInView])
 
   return (
     <>
@@ -178,16 +157,16 @@ function App() {
       }}
       >
       <motion.div 
-        whileHover={{scale:1.2}}
+        data-isOpen={selectCard}
+        whileHover={selectCard == "intern" ? {} : {scale:1.2}}
         whileTap={{scale:0.9}}
-        onClick ={() => {setSelectCard("intern")}}
-        layoutId={"intern"} 
+        onClick ={selectCard == "intern" ? () => {setSelectCard(" ")}: () => {setSelectCard("intern")}}
+        exit={{ opacity: 0 }}
         layout
         ref={loanRef}
-        className="bg-gradient-to-l
-        p-4
-        from-blue-700 to-fuchsia-700
-        bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw] "
+        className={ selectCard == "intern" ?
+          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw]" : "opacity-0"
+        }
         >
           <motion.h5
           className="text-white" >
@@ -199,31 +178,13 @@ function App() {
           <motion.h2 className="text-white text-[3vw] font-black">
             Options
           </motion.h2>
-      </motion.div>
-      </motion.div>
-      <AnimatePresence>
-      {
-        selectCard == "intern" && 
-        <motion.div layoutId={selectCard} className="bg-gradient-to-l
-        p-4
-        from-blue-700 to-fuchsia-700
-        bordered-xl h-[50vh] w-[50vw] relative left-3/10 rounded-xl mb-10 z-50">
-          <div className="flex justify-between">
-          <motion.h5
-          className="text-white" >
-            Software Engineering Intern
-          </motion.h5>
-          <motion.button 
-          className='w-10 h-10 bg-purple-500  rounded-3xl'
-          onClick={() => setSelectCard('')}>X</motion.button>
-          </div>
-          <motion.h2 className="text-white text-6xl font-black">
-            Loan Options
-          </motion.h2>
-        </motion.div>
+        {
+        selectCard == "intern"
+
         
-      }
-      </AnimatePresence>
+        }
+      </motion.div>
+      </motion.div>
       <motion.div 
       className="ml-[15rem]"
       style={{
@@ -231,14 +192,15 @@ function App() {
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
       }}>
       <motion.div layoutId={"as"}
+        onClick ={() => {setSelectCard("bws")}}
         ref={bwsRef}
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
-        className="bg-gradient-to-r
+        className={`bg-gradient-to-r
         from-blue-700 to-purple-600
         p-4
         bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw]
-        "
+        `}
          >
           <motion.h5 className="text-white">
             Customer Service
@@ -303,38 +265,53 @@ function App() {
     <div className=' bg-black flex flex-col z10 h-[100vh]' ref={projectRef}>
     <motion.h6 className="text-white relative text-[4vw] font-black left-1/8 mb-40">Project</motion.h6>
     <motion.div>
-    <div
-    ref={card1}
+    <motion.div
+
     className="left-4/10 absolute z-10 origin-bottom-left"
+    style={{originX:0,originY:1}}
     >
-    <motion.div className="h-[42vh] w-[15vw] bg-gradient-to-b from-red-600 to-indigo-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl"
-    whileHover={{ translateY:-60}}
+    <motion.div className="h-[42vh] w-[15vw] bg-gradient-to-b from-red-600 to-indigo-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+    whileHover={{y:-60,x:-30}}
     whileTap={{scale:0.9}}
+    whileInView={{originX:0.5, originY:1, rotate:-35, transition:{delay:0.3}}}
     >
       Cygrogenic fridge 
     </motion.div>
-    </div>
-    <div ref={card2} className="z-30 left-4/10 absolute origin-bottom-left">
+    </motion.div>
+    <div  className="z-30 left-4/10 absolute origin-bottom-left">
     <motion.div
-    ref={card2} 
-    className="h-[42vh] w-[15vw] bg-gradient-to-b from-blue-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl "
-    whileHover={{ translateY:-60}}
+    className="h-[42vh] w-[15vw] bg-gradient-to-b from-blue-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem]"
+    whileHover={{ y:-60,x:-30}}
     whileTap={{scale:0.9}}
+    whileInView={{originX:0.5, originY:1, rotate:-15, transition:{delay:0.3}}}
     >
-      E-restuarant
+      Twitter Sentimental Analysis
     </motion.div>     
     </div>
-    <div ref={card3} className="z-30 left-4/10 absolute origin-bottom-left">
+    <div className="z-30 left-4/10 absolute origin-bottom-left"
+    >
     <motion.div className="h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-indigo-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl
-    
+    min-w-[12rem] min-h-[15rem] origin-bottom-left
     "
-    whileHover={{ translateY:-60}}
+    whileHover={{y:-70,x:30}}
     whileTap={{scale:0.9}}
+    whileInView={{originX:0.5,originY:1,rotate:15, transition:{delay:0.3}}}
     >
       Bank Statement
     </motion.div>
     </div>
-   
+    <div className="z-30 left-4/10 absolute origin-bottom-left"
+    >
+    <motion.div className="h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-indigo-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl
+    min-w-[12rem] min-h-[15rem] origin-bottom-left
+    "
+    whileHover={{ translateY:-60, x: 30}}
+    whileTap={{scale:0.9}}
+    whileInView={{originX:0.5,originY:1,rotate:35, transition:{delay:0.3}}}
+    >
+      TicketTek Restock Web Scraper
+    </motion.div>
+    </div>
     </motion.div>
     </div>
     <div className=' bg-black flex flex-col z10 ' ref={contactRef} >
