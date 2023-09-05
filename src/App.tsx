@@ -1,6 +1,6 @@
 import './App.css'
 import {useEffect, useState,useRef} from "react"
-import { motion, useInView} from"framer-motion"
+import { motion, useInView,LayoutGroup} from"framer-motion"
 function App() {
   const experienceRef = useRef<HTMLDivElement>(null)
   const projectRef = useRef<HTMLDivElement>(null)
@@ -148,8 +148,11 @@ function App() {
     </div>
     <div className=' bg-black flex flex-col z10' 
         ref={experienceRef}>
+      
       <motion.h6 
       className="text-white relative text-[4vw] font-black left-1/8 mt-40 mb-40">Experience</motion.h6>
+      <LayoutGroup>
+
       <motion.div 
       style={{
         opacity: loanInView ? 1 : 0,
@@ -164,9 +167,8 @@ function App() {
         exit={{ opacity: 0 }}
         layout
         ref={loanRef}
-        className={ selectCard == "intern" ?
-          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw]" : "opacity-0"
-        }
+        className=
+          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw]" 
         >
           <motion.h5
           className="text-white" >
@@ -263,10 +265,12 @@ function App() {
           </motion.h2>
       </motion.div>
      </motion.div>
+     </LayoutGroup>
      
     </div>
     <div className=' bg-black flex flex-col z10 h-[100vh]' ref={projectRef}>
     <motion.h6 className="text-white relative text-[4vw] font-black left-1/8 mb-40">Project</motion.h6>
+    <LayoutGroup>
     <motion.div>
     <motion.div
 
@@ -316,6 +320,7 @@ function App() {
     </motion.div>
     </div>
     </motion.div>
+    </LayoutGroup>
     </div>
     <div className=' bg-black flex flex-col z10 ' ref={contactRef} >
     <motion.h6 className="text-white relative text-[4vw] font-black left-1/8 mb-40 ">Contact</motion.h6>
