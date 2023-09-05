@@ -167,25 +167,35 @@ function App() {
         exit={{ opacity: 0 }}
         layout
         ref={loanRef}
-        className=
-          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw]" 
+        animate={{}}
+        className={
+          selectCard =="intern" ?
+          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[40vh] w-[25vw] relative z-10 left-1/4 rounded-xl mb-[2vw]" :
+          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw]"
+        }
         >
           <motion.h5
-          className="text-white" >
-            Software Engineering Intern
+          layout
+          className="text-white justify-between flex" >
+            <motion.h5> Software Engineering Intern</motion.h5>
+            <motion.h5>June 23-Aug 23</motion.h5>
           </motion.h5>
           <motion.h2 className="text-white text-[3vw] font-black">
-            Loan
+            Loan Options
           </motion.h2>
           <motion.h2 className="text-white text-[3vw] font-black">
-            Options
-          </motion.h2>
-        {
-        selectCard == "intern" &&
-        <motion.div>
+           
+          </motion.h2> 
+        {selectCard == "intern" &&
+          <>
+          <motion.li className="text-white mt-5">
+            Built a website used to analyse bank statements to streamline lender selection process by broker
+          </motion.li>
+          <motion.li className="text-white mt-2">
+            Full Stack Development made with Python backend, FastAPI and ReactJS
+          </motion.li>
 
-        </motion.div>
-
+          </>
         
         }
       </motion.div>
@@ -197,22 +207,39 @@ function App() {
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
       }}>
       <motion.div layoutId={"as"}
-        onClick ={() => {setSelectCard("bws")}}
+        onClick ={selectCard == "bws" ? () => {setSelectCard(" ")}: () => {setSelectCard("bws")}}
         ref={bwsRef}
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
-        className={`bg-gradient-to-r
+        className={
+          selectCard =="bws" ?
+          `bg-gradient-to-r
+        from-blue-700 to-purple-600
+        p-4
+        bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw]
+        `
+          :
+          `bg-gradient-to-r
         from-blue-700 to-purple-600
         p-4
         bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw]
         `}
          >
-          <motion.h5 className="text-white">
-            Customer Service
+          <motion.h5 className="text-white justify-between flex">
+            <motion.h5>Customer Service</motion.h5>
+            <motion.h5>2021-2022</motion.h5>
           </motion.h5>
           <motion.h2 className=" text-white text-[3vw] font-black">
             BWS
           </motion.h2>
+          {selectCard == "bws" &&
+          <>
+          <motion.h2 className="text-white">
+
+          </motion.h2>
+          </>
+        
+        }
       </motion.div>
       </motion.div>
       
@@ -223,15 +250,20 @@ function App() {
       }}>
       <motion.div layoutId={"as"}
         ref={chiRef}
-        className="bg-gradient-to-r
-        p-4
-        from-rose-500 to-blue-700
-        bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw]"
+        className=
+        {
+          selectCard == "chicken" ?
+          "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-1/4 rounded-xl mb-[2vw]"
+          :
+        "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw]"
+        }
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
+        onClick ={selectCard == "chicken" ? () => {setSelectCard(" ")}: () => {setSelectCard("chicken")}}
          >
-          <motion.h5 className="text-white">  
-            Customer Service
+          <motion.h5 className="text-white justify-between flex">  
+            <motion.h5>Customer Service</motion.h5>
+            <motion.h5>2015-2018</motion.h5>
           </motion.h5>
           <motion.h2 className="text-white text-[3vw] font-black">
             Chicken
@@ -249,16 +281,23 @@ function App() {
       }}>
      <motion.div layoutId={"as"}
         ref={cigRef}
-        className="bg-gradient-to-l
-        p-4
-        from-red-400 to-blue-700
-        bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw]
-        "
+        className=
+        {
+        selectCard =="cignall" ?
+        "bg-gradient-to-l p-4 from-red-400 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw]"
+        :
+        "bg-gradient-to-l p-4  from-red-400 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw]"}
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
+        onClick ={selectCard == "cignall" ? () => {setSelectCard(" ")}: () => {setSelectCard("cignall")}}
         >
-          <motion.h5 className="text-white" >
+          <motion.h5 className="text-white flex justify-between" >
+            <motion.h5>
             Customer Service
+            </motion.h5>
+            <motion.h5>
+            2013-2015
+            </motion.h5>
           </motion.h5>
           <motion.h2 className="text-white text-[4vw] font-black">
             Cignall
@@ -324,8 +363,16 @@ function App() {
     </div>
     <div className=' bg-black flex flex-col z10 ' ref={contactRef} >
     <motion.h6 className="text-white relative text-[4vw] font-black left-1/8 mb-40 ">Contact</motion.h6>
-    </div>
-
+      <motion.div>
+        Github
+      </motion.div>
+      <motion.div>
+        LinkedIn
+      </motion.div>
+      <motion.div>
+        Github
+      </motion.div>
+      </div>
     </div>  
     </>
   )
