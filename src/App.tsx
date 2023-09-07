@@ -188,13 +188,15 @@ function App() {
           </motion.h2> 
         {selectCard == "intern" &&
           <>
-          <motion.li className="text-white mt-5">
+          <motion.li className="text-white mt-5 ml-5">
             Built a website used to analyse bank statements to streamline lender selection process by broker
           </motion.li>
-          <motion.li className="text-white mt-2">
+          <motion.li className="text-white mt-2 ml-5">
             Full Stack Development made with Python backend, FastAPI and ReactJS
           </motion.li>
-
+          <motion.li className="text-white mt-2 ml-5">
+            Collaborate with brokers and ui/ux designers
+          </motion.li>
           </>
         
         }
@@ -311,67 +313,77 @@ function App() {
     <motion.h6 className="text-white relative text-[4vw] font-black left-1/8 mb-40">Project</motion.h6>
     <LayoutGroup>
     <motion.div>
-    <motion.div
-
-    className="left-4/10 absolute z-10 origin-bottom-left"
-    style={{originX:0,originY:1}}
-    >
-    <motion.div className="h-[42vh] w-[15vw] bg-gradient-to-b from-red-600 to-indigo-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+    <motion.div className={
+    selectCard == "fridge"?
+    "h-[70vh] w-[30vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+    :
+    "h-[45vh] w-[15vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"}
     whileHover={{y:-60,x:-30}}
     whileTap={{scale:0.9}}
+    layout
     whileInView={{originX:0.5, originY:1, rotate:-35, transition:{delay:0.3}}}
+    onClick ={selectCard == "fridge" ? () => {setSelectCard(" ")}: () => {setSelectCard("fridge")}}
     >
       Cygrogenic fridge 
     </motion.div>
-    </motion.div>
-    <div  className="z-30 left-4/10 absolute origin-bottom-left">
     <motion.div
-    className="h-[42vh] w-[15vw] bg-gradient-to-b from-blue-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem]"
+    layout
+    className={
+      selectCard =="twitter" ?
+      "h-[70vh] w-[30vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem]"
+      :
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem]"}
     whileHover={{ y:-60,x:-30}}
     whileTap={{scale:0.9}}
     whileInView={{originX:0.5, originY:1, rotate:-15, transition:{delay:0.3}}}
+    onClick ={selectCard == "twitter" ? () => {setSelectCard(" ")}: () => {setSelectCard("twitter")}}
     >
       Twitter Sentimental Analysis
     </motion.div>     
-    </div>
-    <div className="z-30 left-4/10 absolute origin-bottom-left"
-    >
-    <motion.div className="h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-indigo-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl
-    min-w-[12rem] min-h-[15rem] origin-bottom-left
-    "
+
+    <motion.div className={
+      selectCard == "bank" ?
+      "h-[70vh] w-[30vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] origin-bottom-left"
+      :
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] origin-bottom-left"}
+    onClick ={selectCard == "bank" ? () => {setSelectCard(" ")}: () => {setSelectCard("bank")}}
     whileHover={{y:-70,x:30}}
     whileTap={{scale:0.9}}
     whileInView={{originX:0.5,originY:1,rotate:15, transition:{delay:0.3}}}
     >
       Bank Statement
     </motion.div>
-    </div>
-    <div className="z-30 left-4/10 absolute origin-bottom-left"
-    >
-    <motion.div className="h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-indigo-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl
-    min-w-[12rem] min-h-[15rem] origin-bottom-left
-    "
+    <motion.div 
+    className=
+    {
+      selectCard =="tickettek" ?
+      "h-[70vh] w-[30vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] origin-bottom-left"
+      :
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] origin-bottom-left"
+    }
+    onClick ={selectCard == "tickettek" ? () => {setSelectCard(" ")}: () => {setSelectCard("tickettek")}}
     whileHover={{ translateY:-60, x: 30}}
     whileTap={{scale:0.9}}
     whileInView={{originX:0.5,originY:1,rotate:35, transition:{delay:0.3}}}
     >
       TicketTek Restock Web Scraper
     </motion.div>
-    </div>
     </motion.div>
     </LayoutGroup>
     </div>
     <div className=' bg-black flex flex-col z10 ' ref={contactRef} >
-    <motion.h6 className="text-white relative text-[4vw] font-black left-1/8 mb-40 ">Contact</motion.h6>
-      <motion.div>
+      <motion.h6 className="text-white relative text-[4vw] font-black left-1/8 mb-40">Contact</motion.h6>
+      <div className='flex justify-evenly'>
+        <motion.div className='text-white '>
         Github
       </motion.div>
-      <motion.div>
+      <motion.div className='text-white'>
         LinkedIn
       </motion.div>
-      <motion.div>
-        Github
+      <motion.div className='text-white'>
+        Email
       </motion.div>
+      </div>
       </div>
     </div>  
     </>
