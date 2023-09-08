@@ -329,7 +329,8 @@ function App() {
       {
         selectCard == "fridge" &&
         <motion.h1 className="text-white font-light mt-10 text-xl">
-
+          Created an web application for a client to enable off site monitorization of a cygrogenic fridge. With alert notifications capabilities to email or phone number directly with adjustable parameters 
+          such as time or which channel needing to be monitored.
         </motion.h1>
       }
     </motion.div>
@@ -349,7 +350,8 @@ function App() {
       {
         selectCard == "twitter" &&
         <motion.h1 className="text-white font-light mt-10 text-xl">
-          Website use to perform sentimental analysis on key phrases based on twitter's sentiment on topics.
+          Built a website use to perform sentimental analysis on key phrases based on twitter's sentiment on topics. Used to determine if a topic has a negative or positive overview based on
+          most recent tweets about selected topic.
         </motion.h1>
       }
     </motion.div>     
