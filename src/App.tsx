@@ -54,7 +54,7 @@ function App() {
     setMousePosition({x: e.clientX ,y:e.clientY})
   }
 
-  const focusExperiment = () =>{
+  const focusExperience = () =>{
     experienceRef?.current?.scrollIntoView({behavior:'smooth'})
   }
   const focusProject = () =>{
@@ -68,6 +68,7 @@ function App() {
     setTimeout(experienceChange,2000)
     setTimeout(contactChange,2000)
     setTimeout(projectChange,2000)
+    setTimeout(focusExperience,2500)
   },[])
 
   return (
@@ -121,7 +122,7 @@ function App() {
           <h1 className="font-mono text-white text-[1vw] h-10 font-slim  mr-5
           "
           onMouseEnter={experienceChange}
-          onClick={focusExperiment}
+          onClick={focusExperience}
           >
             {experience}
           </h1>
@@ -188,13 +189,13 @@ function App() {
           </motion.h2> 
         {selectCard == "intern" &&
           <>
-          <motion.li className="text-white mt-5 ml-5">
+          <motion.li className="text-white mt-5 ml-2">
             Built a website used to analyse bank statements to streamline lender selection process by broker
           </motion.li>
-          <motion.li className="text-white mt-2 ml-5">
+          <motion.li className="text-white mt-2 ml-2">
             Full Stack Development made with Python backend, FastAPI and ReactJS
           </motion.li>
-          <motion.li className="text-white mt-2 ml-5">
+          <motion.li className="text-white mt-2 ml-2">
             Collaborate with brokers and ui/ux designers
           </motion.li>
           </>
@@ -315,58 +316,91 @@ function App() {
     <motion.div>
     <motion.div className={
     selectCard == "fridge"?
-    "h-[70vh] w-[30vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+    "h-[50vh] w-[20vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10  absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
     :
     "h-[45vh] w-[15vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"}
-    whileHover={{y:-60,x:-30}}
+    whileHover={selectCard != "fridge" ?{y:-60,x:-30} :{}}
     whileTap={{scale:0.9}}
     layout
-    whileInView={{originX:0.5, originY:1, rotate:-35, transition:{delay:0.3}}}
+    whileInView={selectCard != "fridge" ?{originX:0.5, originY:1, rotate:-35, transition:{delay:0.3}} :{}}
     onClick ={selectCard == "fridge" ? () => {setSelectCard(" ")}: () => {setSelectCard("fridge")}}
     >
       Cygrogenic fridge 
+      {
+        selectCard == "fridge" &&
+        <motion.h1 className="text-white font-light mt-10 text-xl">
+
+        </motion.h1>
+      }
     </motion.div>
     <motion.div
     layout
     className={
       selectCard =="twitter" ?
-      "h-[70vh] w-[30vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem]"
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem]"
       :
       "h-[42vh] w-[15vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem]"}
-    whileHover={{ y:-60,x:-30}}
+    whileHover={selectCard != "twitter" ?{ y:-60,x:-30}:{}}
     whileTap={{scale:0.9}}
-    whileInView={{originX:0.5, originY:1, rotate:-15, transition:{delay:0.3}}}
+    whileInView={selectCard != "twitter" ?{originX:0.5, originY:1, rotate:-15, transition:{delay:0.3}} :{}}
     onClick ={selectCard == "twitter" ? () => {setSelectCard(" ")}: () => {setSelectCard("twitter")}}
     >
       Twitter Sentimental Analysis
+      {
+        selectCard == "twitter" &&
+        <motion.h1 className="text-white font-light mt-10 text-xl">
+          Website use to perform sentimental analysis on key phrases based on twitter's sentiment on topics.
+        </motion.h1>
+      }
     </motion.div>     
 
-    <motion.div className={
+    <motion.div
+    layout className={
       selectCard == "bank" ?
-      "h-[70vh] w-[30vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] origin-bottom-left"
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
       :
-      "h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] origin-bottom-left"}
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"}
     onClick ={selectCard == "bank" ? () => {setSelectCard(" ")}: () => {setSelectCard("bank")}}
-    whileHover={{y:-70,x:30}}
+    whileHover={selectCard != "bank" ? {y:-70,x:30} : {}}
     whileTap={{scale:0.9}}
-    whileInView={{originX:0.5,originY:1,rotate:15, transition:{delay:0.3}}}
+    whileInView={selectCard != "bank" ? {originX:0.5,originY:1,rotate:15, transition:{delay:0.3}} : {}}
     >
-      Bank Statement
+      Bank Statement Web Application
+    {
+      selectCard == "bank" &&
+      <>
+      <motion.h1 className="text-white font-light mt-10 text-xl">
+        Bank Statement analysis application made during internship.
+        Website made for in-house brokers' use to streamline the lender selection 
+        process by extracting relevant data in bank statements to display simple measureable metrics.
+      </motion.h1>
+      </>
+    }
     </motion.div>
+
     <motion.div 
+    layout
     className=
     {
       selectCard =="tickettek" ?
-      "h-[70vh] w-[30vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] origin-bottom-left"
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] rotate-45"
       :
-      "h-[42vh] w-[15vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] origin-bottom-left"
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
     }
     onClick ={selectCard == "tickettek" ? () => {setSelectCard(" ")}: () => {setSelectCard("tickettek")}}
-    whileHover={{ translateY:-60, x: 30}}
+    whileHover={selectCard != "tickettek" ?{ translateY:-60, x: 30} :{}}
     whileTap={{scale:0.9}}
-    whileInView={{originX:0.5,originY:1,rotate:35, transition:{delay:0.3}}}
+    whileInView={selectCard != "tickettek" ? {originX:0.5,originY:1,rotate:35, transition:{delay:0.3}}: {transition:{delay:2}}}
     >
       TicketTek Restock Web Scraper
+
+      {
+        selectCard == "tickettek" && 
+        <motion.h1 className="font-light mt-10 text-xl">
+          Build a web scraper for tickettek using python and regex to play an sound alert whenever a restock. 
+          Personal project that used to experiment with web requests and learn how to use basic regex. 
+        </motion.h1>
+      }
     </motion.div>
     </motion.div>
     </LayoutGroup>
