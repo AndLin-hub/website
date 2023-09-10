@@ -182,7 +182,7 @@ function App() {
             <motion.h5>June 23-Aug 23</motion.h5>
           </motion.h5>
           <motion.h2 className="text-white text-[3vw] font-black">
-            Loan Options
+            Loan Options 
           </motion.h2>
           <motion.h2 className="text-white text-[3vw] font-black">
            
@@ -199,7 +199,6 @@ function App() {
             Collaborate with brokers and ui/ux designers
           </motion.li>
           </>
-        
         }
       </motion.div>
       </motion.div>
@@ -236,11 +235,17 @@ function App() {
             BWS
           </motion.h2>
           {selectCard == "bws" &&
-          <>
-          <motion.h2 className="text-white">
-
-          </motion.h2>
-          </>
+           <>
+           <motion.li className="text-white mt-5 ml-2">
+            Assist customers with questions or recommendations.
+           </motion.li>
+           <motion.li className="text-white mt-2 ml-2">
+           Stocking Shelves and unloading pallets 
+           </motion.li>
+           <motion.li className="text-white mt-2 ml-2">
+           Ability to work alone and maintain day to day operations.
+           </motion.li>
+           </>
         
         }
       </motion.div>
@@ -274,6 +279,20 @@ function App() {
           <motion.h2 className="text-white text-[3vw] font-black">
             Licken Good
           </motion.h2>
+          {selectCard == "chicken" &&
+           <>
+           <motion.li className="text-white mt-5 ml-2">
+           Handled over 100 customer orders and inquiries in person on a daily basis.
+           </motion.li>
+           <motion.li className="text-white mt-2 ml-2">
+           Initiated store closing procedures, including management of daily settlement 
+           </motion.li>
+           <motion.li className="text-white mt-2 ml-2">
+           Assisted day sales operations, including reordering inventory and stock take
+           </motion.li>
+           </>
+        
+        }
       </motion.div>
       </motion.div>
      <motion.div
@@ -305,6 +324,21 @@ function App() {
           <motion.h2 className="text-white text-[4vw] font-black">
             Cignall
           </motion.h2>
+
+          {selectCard == "cignall" &&
+           <>
+           <motion.li className="text-white mt-5 ml-2">
+           Merchandised store displays to maintain visual appeal and optimized for promotions.
+           </motion.li>
+           <motion.li className="text-white mt-2 ml-2">
+           Completed customer transactions and answered customer questions.
+           </motion.li>
+           <motion.li className="text-white mt-2 ml-2">
+           Greeted every customer with friendly conversation, and offer of assistance to enhance customer experience, and buying opportunities.
+           </motion.li>
+           </>
+        
+        }
       </motion.div>
      </motion.div>
      </LayoutGroup>
