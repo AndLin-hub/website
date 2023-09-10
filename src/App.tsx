@@ -1,6 +1,8 @@
 import './App.css'
 import {useEffect, useState,useRef} from "react"
 import { motion, useInView,LayoutGroup} from"framer-motion"
+import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa6";
+import { IconContext } from 'react-icons';
 function App() {
   const experienceRef = useRef<HTMLDivElement>(null)
   const projectRef = useRef<HTMLDivElement>(null)
@@ -151,7 +153,7 @@ function App() {
         ref={experienceRef}>
       
       <motion.h6 
-      className="text-white relative text-[4vw] font-black left-1/8 mt-40 mb-40">Experience</motion.h6>
+      className="text-white relative text-[4vw] font-sans left-1/8 mt-40 mb-40">Experience</motion.h6>
       <LayoutGroup>
 
       <motion.div 
@@ -184,7 +186,7 @@ function App() {
           <motion.h2 className="text-white text-[3vw] font-black">
             Loan Options 
           </motion.h2>
-          <motion.h2 className="text-white text-[3vw] font-black">
+          <motion.h2 className="text-white text-[3vw] font-sans">
            
           </motion.h2> 
         {selectCard == "intern" &&
@@ -345,7 +347,7 @@ function App() {
      
     </div>
     <div className=' bg-black flex flex-col z10 h-[100vh]' ref={projectRef}>
-    <motion.h6 className="text-white relative text-[4vw] font-black left-1/8 mb-40">Project</motion.h6>
+    <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40">Project</motion.h6>
     <LayoutGroup>
     <motion.div>
     <motion.div className={
@@ -441,18 +443,23 @@ function App() {
     </motion.div>
     </LayoutGroup>
     </div>
-    <div className=' bg-black flex flex-col z10 ' ref={contactRef} >
-      <motion.h6 className="text-white relative text-[4vw] font-black left-1/8 mb-40">Contact</motion.h6>
+    <div className=' bg-black flex flex-col z10 h-[40vh]' ref={contactRef} >
+      <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-20">Contact</motion.h6>
       <div className='flex justify-evenly'>
-        <motion.div className='text-white '>
+        <IconContext.Provider value={{size:"3vw"}}>
+        <motion.div className='text-white'>
+        <FaGithub></FaGithub>
         Github
       </motion.div>
       <motion.div className='text-white'>
+        <FaLinkedin/>
         LinkedIn
       </motion.div>
       <motion.div className='text-white'>
+        <FaEnvelope/>
         Email
       </motion.div>
+      </IconContext.Provider>
       </div>
       </div>
     </div>  
