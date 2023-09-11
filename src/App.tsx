@@ -448,16 +448,16 @@ function App() {
       <div className='flex justify-evenly'>
         <IconContext.Provider value={{size:"3vw"}}>
         <motion.div className='text-white'>
-        <FaGithub></FaGithub>
+        <FaGithub onClick={()=> window.open("https://github.com/AndLin-hub")}></FaGithub>
         Github
       </motion.div>
       <motion.div className='text-white'>
-        <FaLinkedin/>
+        <FaLinkedin onClick={()=> window.open("https://www.linkedin.com/in/andie-lin/")} />
         LinkedIn
       </motion.div>
       <motion.div className='text-white'>
         <FaEnvelope/>
-        Email
+        andie.lin1@outlook.com
       </motion.div>
       </IconContext.Provider>
       </div>
