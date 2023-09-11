@@ -1,7 +1,7 @@
 import './App.css'
 import {useEffect, useState,useRef} from "react"
 import { motion, useInView,LayoutGroup} from"framer-motion"
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa6";
+import { FaGithub, FaLinkedin, FaEnvelope, FaFile } from "react-icons/fa6";
 import { IconContext } from 'react-icons';
 function App() {
   const experienceRef = useRef<HTMLDivElement>(null)
@@ -72,7 +72,20 @@ function App() {
     setTimeout(projectChange,2000)
     setTimeout(focusExperience,2500)
   },[])
-
+  const onButtonClick = () => {
+    // using Java Script method to get PDF file
+    fetch('andieLinResume.docx').then(response => {
+        response.blob().then(blob => {
+            // Creating new object of PDF file
+            const fileURL = window.URL.createObjectURL(blob);
+            // Setting various property values
+            let alink = document.createElement('a');
+            alink.href = fileURL;
+            alink.download = 'andieLinResume.docx';
+            alink.click();
+        })
+    })
+}
   return (
     <>
       <div
@@ -83,7 +96,7 @@ function App() {
       animate={{left:mousePosition.x -360,
       top:mousePosition.y-360,}}
       transition={{duration:1}}
-      className={` h-[40rem] w-[40rem] fixed rounded-full bg-gradient-to-r from-purple-500 to-blue-500 blur-xxl rotate animate-spin-slow overflow-hidden`}/>
+      className={` h-[40rem] w-[40rem] fixed rounded-full bg-gradient-to-r from-purple-500 to-blue-500 blur-xxl rotate animate-spin-slow overflow-hidden z-10`}/>
       <motion.div className="bg-black max-h-screen max-w-screen w-screen h-screen flex overflow-hidden"
       transition={{delay:3, duration: 1}}
       > 
@@ -149,7 +162,7 @@ function App() {
     <div>
 
     </div>
-    <div className=' bg-black flex flex-col z10' 
+    <div className=' bg-black flex flex-col' 
         ref={experienceRef}>
       
       <motion.h6 
@@ -173,8 +186,8 @@ function App() {
         animate={{}}
         className={
           selectCard =="intern" ?
-          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[40vh] w-[25vw] relative z-10 left-1/4 rounded-xl mb-[2vw]" :
-          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw]"
+          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[40vh] w-[25vw] relative z-20 left-1/4 rounded-xl mb-[2vw] " :
+          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[25vh] w-[21vw] relative z-20 left-1/4 rounded-xl mb-[2vw]"
         }
         >
           <motion.h5
@@ -220,13 +233,13 @@ function App() {
           `bg-gradient-to-r
         from-blue-700 to-purple-600
         p-4
-        bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw]
+        bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw] z-20
         `
           :
           `bg-gradient-to-r
         from-blue-700 to-purple-600
         p-4
-        bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw]
+        bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw] z-20
         `}
          >
           <motion.h5 className="text-white justify-between flex">
@@ -263,9 +276,9 @@ function App() {
         className=
         {
           selectCard == "chicken" ?
-          "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-1/4 rounded-xl mb-[2vw]"
+          "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-1/4 rounded-xl mb-[2vw] z-20" 
           :
-        "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw]"
+        "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw] z-20"
         }
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
@@ -308,9 +321,9 @@ function App() {
         className=
         {
         selectCard =="cignall" ?
-        "bg-gradient-to-l p-4 from-red-400 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw]"
+        "bg-gradient-to-l p-4 from-red-400 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw] z-20"
         :
-        "bg-gradient-to-l p-4  from-red-400 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw]"}
+        "bg-gradient-to-l p-4  from-red-400 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw] z-20"}
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
         onClick ={selectCard == "cignall" ? () => {setSelectCard(" ")}: () => {setSelectCard("cignall")}}
@@ -443,22 +456,26 @@ function App() {
     </motion.div>
     </LayoutGroup>
     </div>
-    <div className=' bg-black flex flex-col z10 h-[40vh]' ref={contactRef} >
+    <div className=' bg-black flex flex-col z-50 h-[40vh]' ref={contactRef} >
       <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-20">Contact</motion.h6>
       <div className='flex justify-evenly'>
         <IconContext.Provider value={{size:"3vw"}}>
-        <motion.div className='text-white'>
-        <FaGithub onClick={()=> window.open("https://github.com/AndLin-hub")}></FaGithub>
+        <div  className='text-white justify-center z-20'>
+        <FaGithub onClick={()=> window.open("https://github.com/AndLin-hub","_blank")}></FaGithub>
         Github
-      </motion.div>
-      <motion.div className='text-white'>
-        <FaLinkedin onClick={()=> window.open("https://www.linkedin.com/in/andie-lin/")} />
+        </div>
+        <div className='text-white justify-center z-20'>
+        <FaLinkedin onClick={()=> window.open("https://www.linkedin.com/in/andie-lin/","_blank")} />
         LinkedIn
-      </motion.div>
-      <motion.div className='text-white'>
-        <FaEnvelope/>
+        </div>
+        <div className='text-white justify-center z-20'>
+        <FaEnvelope />
         andie.lin1@outlook.com
-      </motion.div>
+        </div>
+        <div className='text-white justify-center z-20'>
+        <FaFile onClick={()=> onButtonClick()} />
+        Resume
+        </div>
       </IconContext.Provider>
       </div>
       </div>
