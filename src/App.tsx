@@ -462,23 +462,23 @@ function App() {
     </div>
     <div className=' bg-black flex flex-col z-50 h-[40vh]' ref={contactRef} >
       <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-20">Contact</motion.h6>
-      <div className='flex justify-evenly'>
+      <div className='flex justify-evenly '>
         <IconContext.Provider value={{size:"3vw"}}>
-        <div  className='text-white justify-center z-20'>
+        <div  className='text-white  z-20 text-center' >
         <FaGithub onClick={()=> window.open("https://github.com/AndLin-hub","_blank")}></FaGithub>
-        Github
+        <a>Github</a>
         </div>
-        <div className='text-white justify-center z-20'>
+        <div className='text-white z-20 text-center'>
         <FaLinkedin onClick={()=> window.open("https://www.linkedin.com/in/andie-lin/","_blank")} />
-        LinkedIn
+        <a>LinkedIn</a>
         </div>
-        <div className='text-white justify-center z-20'>
+        <div className='text-white  z-20 text-center '>
         <FaEnvelope />
-        andie.lin1@outlook.com
+        <a>andie.lin1@outlook.com</a>
         </div>
-        <div className='text-white justify-center z-20'>
+        <div className='text-white  z-20 text-center'>
         <FaFile onClick={()=> onButtonClick()} />
-        Resume
+        <a>Resume</a>
         </div>
       </IconContext.Provider>
       </div>
