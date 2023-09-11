@@ -373,6 +373,7 @@ function App() {
     layout
     whileInView={selectCard != "fridge" ?{originX:0.5, originY:1, rotate:-35, transition:{delay:0.3}} :{}}
     onClick ={selectCard == "fridge" ? () => {setSelectCard(" ")}: () => {setSelectCard("fridge")}}
+    transition={{duration:0.3}}
     >
       Cygrogenic fridge 
       {
@@ -394,6 +395,7 @@ function App() {
     whileTap={{scale:0.9}}
     whileInView={selectCard != "twitter" ?{originX:0.5, originY:1, rotate:-15, transition:{delay:0.3}} :{}}
     onClick ={selectCard == "twitter" ? () => {setSelectCard(" ")}: () => {setSelectCard("twitter")}}
+    transition={{duration:0.3}}
     >
       Twitter Sentimental Analysis
       {
@@ -415,6 +417,7 @@ function App() {
     whileHover={selectCard != "bank" ? {y:-70,x:30} : {}}
     whileTap={{scale:0.9}}
     whileInView={selectCard != "bank" ? {originX:0.5,originY:1,rotate:15, transition:{delay:0.3}} : {}}
+    transition={{duration:0.3}}
     >
       Bank Statement Web Application
     {
@@ -439,9 +442,10 @@ function App() {
       "h-[42vh] w-[15vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
     }
     onClick ={selectCard == "tickettek" ? () => {setSelectCard(" ")}: () => {setSelectCard("tickettek")}}
-    whileHover={selectCard != "tickettek" ? { translateY:-70, x: 30} :{}}
+    whileHover={selectCard != "tickettek" ? { y:-20, x: 30} :{}}
     whileTap={{scale:0.9}}
     whileInView={selectCard != "tickettek" ? {originX:0.5,originY:1,rotate:35, transition:{delay:0.3}}: {transition:{delay:2}}}
+    transition={{duration:0.3}}
     >
       TicketTek Restock Web Scraper
 
