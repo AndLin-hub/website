@@ -2,6 +2,7 @@ import './App.css'
 import {useEffect, useState,useRef} from "react"
 import { motion, useInView,LayoutGroup} from"framer-motion"
 import { FaGithub, FaLinkedin, FaEnvelope, FaFile } from "react-icons/fa6";
+import { Analytics } from '@vercel/analytics/react';
 import { IconContext } from 'react-icons';
 function App() {
   const experienceRef = useRef<HTMLDivElement>(null)
@@ -88,6 +89,7 @@ function App() {
 }
   return (
     <>
+      <Analytics/>
       <div
       onMouseMove={onMouseMove}
       className="overflow-hidden relative z-20"
