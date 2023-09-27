@@ -2,9 +2,10 @@ import './App.css'
 import {useEffect, useState,useRef} from "react"
 import { motion, useInView,LayoutGroup} from"framer-motion"
 import { FaGithub, FaLinkedin, FaEnvelope, FaFile } from "react-icons/fa6";
-import { Analytics } from '@vercel/analytics/react';
 import { IconContext } from 'react-icons';
+import { inject } from '@vercel/analytics';
 function App() {
+  inject();
   const experienceRef = useRef<HTMLDivElement>(null)
   const projectRef = useRef<HTMLDivElement>(null)
   const contactRef = useRef<HTMLDivElement>(null)
@@ -485,7 +486,6 @@ function App() {
       </div>
       </div>
     </div>  
-    <Analytics/>
     </>
   )
 }
