@@ -89,7 +89,6 @@ function App() {
 }
   return (
     <>
-      <Analytics/>
       <div
       onMouseMove={onMouseMove}
       className="overflow-hidden relative z-20"
@@ -486,6 +485,7 @@ function App() {
       </div>
       </div>
     </div>  
+    <Analytics/>
     </>
   )
 }
