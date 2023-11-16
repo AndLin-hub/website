@@ -429,7 +429,6 @@ function App() {
         Bank Statement analysis application made during internship.
         Website made for in-house brokers' use to streamline the lender selection 
         process by extracting relevant data in bank statements to display simple measureable metrics. 
-        Made from full f
       </motion.h1>
       </>
     }
