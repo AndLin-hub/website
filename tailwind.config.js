@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       blur:{
-        xxl: '250px'
+        xxl: '200px'
       },
       animation: {
         'spin-slow': 'spin 10s linear infinite',

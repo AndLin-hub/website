@@ -98,7 +98,7 @@ function App() {
       animate={{left:mousePosition.x -360,
       top:mousePosition.y-360,}}
       transition={{duration:1}}
-      className={` h-[40rem] w-[40rem] fixed rounded-full bg-gradient-to-r from-purple-500 to-blue-500 blur-xxl rotate animate-spin-slow overflow-hidden z-10`}/>
+      className={'h-[40rem] w-[40rem] fixed rounded-full bg-gradient-to-r from-purple-500 to-blue-500 rotate animate-spin-slow blur-xxl z-10'}/>
       <motion.div className="bg-black max-h-screen max-w-screen w-screen h-screen flex overflow-hidden"
       transition={{delay:3, duration: 1}}
       > 
@@ -168,7 +168,7 @@ function App() {
         ref={experienceRef}>
       
       <motion.h6 
-      className="text-white relative text-[4vw] font-sans left-1/8 mt-40 mb-40">Experience</motion.h6>
+      className="text-white relative text-[4vw] font-sans left-1/8 mt-40 mb-40 z-20">Experience</motion.h6>
       <LayoutGroup>
 
       <motion.div 
@@ -210,7 +210,7 @@ function App() {
             Built a website used to analyse bank statements to streamline lender selection process by broker
           </motion.li>
           <motion.li className="text-white mt-2 ml-2">
-            Full Stack Development made with Python backend, FastAPI and ReactJS
+            Full Stack Development made with Python backend, FastAPI and NextJS
           </motion.li>
           <motion.li className="text-white mt-2 ml-2">
             Collaborate with brokers and ui/ux designers
@@ -362,7 +362,7 @@ function App() {
      
     </div>
     <div className=' bg-black flex flex-col z10 h-[100vh]' ref={projectRef}>
-    <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40">Project</motion.h6>
+    <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40 z-20">Project</motion.h6>
     <LayoutGroup>
     <motion.div>
     <motion.div className={
@@ -428,7 +428,8 @@ function App() {
       <motion.h1 className="text-white font-light mt-10 text-xl">
         Bank Statement analysis application made during internship.
         Website made for in-house brokers' use to streamline the lender selection 
-        process by extracting relevant data in bank statements to display simple measureable metrics.
+        process by extracting relevant data in bank statements to display simple measureable metrics. 
+        Made from full f
       </motion.h1>
       </>
     }
@@ -454,7 +455,7 @@ function App() {
       {
         selectCard == "tickettek" && 
         <motion.h1 className="font-light mt-10 text-xl">
-          Build a web scraper for tickettek using python and regex to play an sound alert whenever a restock. 
+          Built a web scraper for tickettek using python and regex to play an sound alert whenever a ticket would restock. 
           Personal project that used to experiment with web requests and learn how to use basic regex. 
         </motion.h1>
       }
