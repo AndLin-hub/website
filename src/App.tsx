@@ -13,6 +13,7 @@ function App() {
   const chiRef =useRef<HTMLDivElement>(null)
   const bwsRef =useRef<HTMLDivElement>(null)
   const cigRef = useRef<HTMLDivElement>(null)
+  const mouse = useRef<HTMLDivElement>(null)
   const [selectCard, setSelectCard] = useState<string>()
   const [mousePosition, setMousePosition] = useState({x:0 , y:0})
   const [name, setName] = useState("ANDIE LIN")
@@ -54,9 +55,6 @@ function App() {
   const projectChange = () =>{
     changeLetters("PROJECT",setProject)
   }
-  const onMouseMove = (e:any) =>{
-    setMousePosition({x: e.clientX ,y:e.clientY})
-  }
 
   const focusExperience = () =>{
     experienceRef?.current?.scrollIntoView({behavior:'smooth'})
@@ -74,6 +72,17 @@ function App() {
     setTimeout(projectChange,2000)
     setTimeout(focusExperience,2500)
   },[])
+  useEffect(() => {
+    document.addEventListener("mousemove", (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    });
+  }, []);
+  useEffect(() => {
+    if (mouse.current) {
+      mouse.current.style.top = mousePosition.y - 360 + "px";
+      mouse.current.style.left = mousePosition.x - 360  + "px";
+    }
+  },[mousePosition.x,mousePosition.y])
   const onButtonClick = () => {
     // using Java Script method to get PDF file
     fetch('andieLinResume.docx').then(response => {
@@ -91,14 +100,13 @@ function App() {
   return (
     <>
       <div
-      onMouseMove={onMouseMove}
       className="overflow-hidden relative z-20"
       > 
       <motion.div 
-      animate={{left:mousePosition.x -360,
-      top:mousePosition.y-360,}}
+      animate={{left:mousePosition.x -360,top:mousePosition.y-360,}}
       transition={{duration:1}}
-      className={'h-[40rem] w-[40rem] fixed rounded-full bg-gradient-to-r from-purple-500 to-blue-500 rotate animate-spin-slow blur-xxl z-10'}/>
+      ref={mouse}
+      className={'h-[40rem] w-[40rem] fixed rounded-full bg-gradient-to-r from-purple-500 to-blue-500 blur-xxl z-10'}/>
       <motion.div className="bg-black max-h-screen max-w-screen w-screen h-screen flex overflow-hidden"
       transition={{delay:3, duration: 1}}
       > 
@@ -164,8 +172,7 @@ function App() {
     <div>
 
     </div>
-    <div className=' bg-black flex flex-col' 
-        ref={experienceRef}>
+    <div className='bg-black overflow-hidden' ref={experienceRef}>
       
       <motion.h6 
       className="text-white relative text-[4vw] font-sans left-1/8 mt-40 mb-40 z-20">Experience</motion.h6>
@@ -188,7 +195,7 @@ function App() {
         animate={{}}
         className={
           selectCard =="intern" ?
-          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[40vh] w-[25vw] relative z-20 left-1/4 rounded-xl mb-[2vw] " :
+          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[40vh] w-[25vw] relative z-20 left-1/4 rounded-xl mb-[2vw] overflow-auto" :
           "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[25vh] w-[21vw] relative z-20 left-1/4 rounded-xl mb-[2vw]"
         }
         >
@@ -236,7 +243,7 @@ function App() {
         from-blue-700 to-purple-600
         p-4
         bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw] z-20
-        `
+        overflow-auto`
           :
           `bg-gradient-to-r
         from-blue-700 to-purple-600
@@ -278,7 +285,7 @@ function App() {
         className=
         {
           selectCard == "chicken" ?
-          "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-1/4 rounded-xl mb-[2vw] z-20" 
+          "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-1/4 rounded-xl mb-[2vw] z-20 overflow-auto" 
           :
         "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw] z-20"
         }
@@ -323,7 +330,7 @@ function App() {
         className=
         {
         selectCard =="cignall" ?
-        "bg-gradient-to-l p-4 from-red-400 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw] z-20"
+        "bg-gradient-to-l p-4 from-red-400 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw] z-20 overflow-auto"
         :
         "bg-gradient-to-l p-4  from-red-400 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw] z-20"}
         whileHover={{scale:1.2}}
@@ -361,18 +368,17 @@ function App() {
      </LayoutGroup>
      
     </div>
-    <div className=' bg-black flex flex-col z10 h-[100vh]' ref={projectRef}>
+    <div className=' bg-black z-10 h-[100vh]' ref={projectRef}>
     <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40 z-20">Project</motion.h6>
     <LayoutGroup>
     <motion.div>
     <motion.div className={
     selectCard == "fridge"?
-    "h-[50vh] w-[20vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10  absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+    "h-[50vh] w-[20vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10  absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
     :
     "h-[45vh] w-[15vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"}
     whileHover={selectCard != "fridge" ?{y:-60,x:-30} :{}}
     whileTap={{scale:0.9}}
-    layout
     whileInView={selectCard != "fridge" ?{originX:0.5, originY:1, rotate:-35, transition:{delay:0.3}} :{}}
     onClick ={selectCard == "fridge" ? () => {setSelectCard(" ")}: () => {setSelectCard("fridge")}}
     transition={{duration:0.3}}
@@ -390,7 +396,7 @@ function App() {
     layout
     className={
       selectCard =="twitter" ?
-      "h-[50vh] w-[20vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem]"
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem] overflow-auto"
       :
       "h-[42vh] w-[15vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem]"}
     whileHover={selectCard != "twitter" ?{ y:-60,x:-30}:{}}
@@ -412,7 +418,7 @@ function App() {
     <motion.div
     layout className={
       selectCard == "bank" ?
-      "h-[50vh] w-[20vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
       :
       "h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"}
     onClick ={selectCard == "bank" ? () => {setSelectCard(" ")}: () => {setSelectCard("bank")}}
@@ -439,7 +445,7 @@ function App() {
     className=
     {
       selectCard =="tickettek" ?
-      "h-[50vh] w-[20vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] "
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
       :
       "h-[42vh] w-[15vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
     }
