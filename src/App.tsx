@@ -19,6 +19,7 @@ function App() {
   const [mousePosition, setMousePosition] = useState({x:0 , y:0})
   const [name, setName] = useState("ANDIE LIN")
   const [project, setProject] = useState("PROJECT")
+  const [skill, setSkill] = useState("SKILL")
   const [experience, setExperience] = useState("EXPERIENCE")
   const [contact, setContact] = useState("CONTACT")
   const loanInView = useInView(loanRef, {once:true})
@@ -56,7 +57,9 @@ function App() {
   const projectChange = () =>{
     changeLetters("PROJECT",setProject)
   }
-
+  const skillChange = () =>{
+    changeLetters("SKILL",setSkill)
+  }
   const focusExperience = () =>{
     experienceRef?.current?.scrollIntoView({behavior:'smooth'})
   }
@@ -66,11 +69,15 @@ function App() {
   const focusContact = () =>{
     contactRef?.current?.scrollIntoView({behavior:'smooth'})
   }
+  const focusSkill = () =>{
+    skillRef?.current?.scrollIntoView({behavior:'smooth'})
+  }
   useEffect(()=>{
     setTimeout(nameChange,1000)
     setTimeout(experienceChange,2000)
     setTimeout(contactChange,2000)
     setTimeout(projectChange,2000)
+    setTimeout(skillChange,2000)
     setTimeout(focusExperience,2500)
   },[])
   useEffect(() => {
@@ -151,6 +158,13 @@ function App() {
           onClick={focusExperience}
           >
             {experience}
+          </h1>
+          <h1 className="font-mono text-white text-[1vw] h-10 font-slim  mr-5
+          "
+          onMouseEnter={skillChange}
+          onClick={focusSkill}
+          >
+            {skill}
           </h1>
           <h1 className="font-mono text-white text-[1vw] h-10 font-slim mr-5
           " 
