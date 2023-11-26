@@ -13,6 +13,7 @@ function App() {
   const chiRef =useRef<HTMLDivElement>(null)
   const bwsRef =useRef<HTMLDivElement>(null)
   const cigRef = useRef<HTMLDivElement>(null)
+  const skillRef = useRef<HTMLDivElement>(null)
   const mouse = useRef<HTMLDivElement>(null)
   const [selectCard, setSelectCard] = useState<string>()
   const [mousePosition, setMousePosition] = useState({x:0 , y:0})
@@ -103,10 +104,10 @@ function App() {
       className="overflow-hidden relative z-20"
       > 
       <motion.div 
-      animate={{left:mousePosition.x -360,top:mousePosition.y-360,}}
+      animate={{left:mousePosition.x -100,top:mousePosition.y-100,}}
       transition={{duration:1}}
       ref={mouse}
-      className={'h-[40rem] w-[40rem] fixed rounded-full bg-gradient-to-r from-purple-500 to-blue-500 blur-xxl z-10'}/>
+      className={'h-[15rem] w-[15rem] fixed rounded-full bg-gradient-to-r from-purple-500 to-blue-500 animate-spin-slow blur-3xl z-10'}/>
       <motion.div className="bg-black max-h-screen max-w-screen w-screen h-screen flex overflow-hidden"
       transition={{delay:3, duration: 1}}
       > 
@@ -227,7 +228,6 @@ function App() {
       </motion.div>
       </motion.div>
       <motion.div 
-      className="ml-[15rem]"
       style={{
         opacity: bwsInView ? 1 : 0,
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
@@ -242,13 +242,13 @@ function App() {
           `bg-gradient-to-r
         from-blue-700 to-purple-600
         p-4
-        bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw] z-20
+        bordered-xl h-[40vh] w-[25vw] relative left-6/10 rounded-xl mb-[2vw] z-20
         overflow-auto`
           :
           `bg-gradient-to-r
         from-blue-700 to-purple-600
         p-4
-        bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw] z-20
+        bordered-xl h-[25vh] w-[21vw] relative left-6/10 rounded-xl mb-[2vw] z-20
         `}
          >
           <motion.h5 className="text-white justify-between flex">
@@ -320,7 +320,6 @@ function App() {
       </motion.div>
       </motion.div>
      <motion.div
-     className="ml-[15rem]"
      style={{
       opacity: cigInView ? 1 : 0,
       transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
@@ -330,9 +329,9 @@ function App() {
         className=
         {
         selectCard =="cignall" ?
-        "bg-gradient-to-l p-4 from-red-400 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw] z-20 overflow-auto"
+        "bg-gradient-to-l p-4 from-red-400 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-6/10 rounded-xl mb-[2vw] z-20 overflow-auto"
         :
-        "bg-gradient-to-l p-4  from-red-400 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw] z-20"}
+        "bg-gradient-to-l p-4  from-red-400 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-6/10 rounded-xl mb-[2vw] z-20"}
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
         onClick ={selectCard == "cignall" ? () => {setSelectCard(" ")}: () => {setSelectCard("cignall")}}
@@ -366,7 +365,25 @@ function App() {
       </motion.div>
      </motion.div>
      </LayoutGroup>
-     
+    </div>
+    <div className=' bg-black z-10 overflow-hidden' ref={skillRef}>
+    <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40 z-20">Skills</motion.h6>
+    <div className="font-black h-[30vh] w-[20vw] relative bg-gradient-to-l from-blue-700 to-fuchsia-700 left-1/4 rounded-xl p-4 z-30 text-white">Frontend development
+    <p className="font-light">ReactJS</p>
+    <p className="font-light">Javascript/TypeScript</p>
+    <p className="font-light">Tailwind CSS</p>
+    <p>Framework</p>
+    <p className="font-light">NextJS</p>
+    </div>
+    <div className="font-black h-[35vh] w-[20vw] relative bg-gradient-to-l from-red-400 to-blue-700 left-6/10 rounded-xl p-4 z-30 text-white">Backend development
+    <p className="font-light">Python</p>
+    <p className="font-light">C++</p>
+    <p className="font-light">C</p>
+    <p className="font-light">Java</p>
+    <p>Framework</p>
+    <p className="font-light">Django</p>
+    <p className="font-light">FastAPI</p>
+    </div>
     </div>
     <div className=' bg-black z-10 h-[100vh]' ref={projectRef}>
     <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40 z-20">Project</motion.h6>
@@ -468,8 +485,13 @@ function App() {
     </motion.div>
     </LayoutGroup>
     </div>
+
+
+
+
+
     <div className=' bg-black flex flex-col z-50 h-[40vh]' ref={contactRef} >
-      <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-20">Contact</motion.h6>
+      <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-20 z-40">Contact</motion.h6>
       <div className='flex justify-evenly '>
         <IconContext.Provider value={{size:"3vw"}}>
         <div  className='text-white  z-20 text-center' >

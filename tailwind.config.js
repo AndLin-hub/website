@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       blur:{
-        xxl: '200px'
+        xxl: '150px'
       },
       animation: {
         'spin-slow': 'spin 10s linear infinite',
@@ -16,7 +16,8 @@ export default {
       inset:{
         '1/8': "18%",
         '3/10':"30%",
-        '4/10':"45%"
+        '4/10':"45%",
+        '6/10':"60%"
       }
     },
   },
