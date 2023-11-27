@@ -118,7 +118,7 @@ function App() {
       <motion.div className="bg-black max-h-screen max-w-screen w-screen h-screen flex overflow-hidden"
       transition={{delay:3, duration: 1}}
       > 
-        <nav className='fixed top-0 flex w-screen justify-between mt-10 z-20'>
+        <nav className='fixed top-0 flex w-screen justify-between mt-10 z-50'>
         <motion.div  
           variants={{
             mid:{
@@ -152,28 +152,28 @@ function App() {
         <motion.div className='justify-evenly w-[25vw] flex mr-20 mt-4'
         initial={{opacity:0}}
         animate={{opacity:1,transition:{delay:2,}}}>
-          <h1 className="font-mono text-white text-[1vw] h-10 font-slim  mr-5
+          <h1 className="font-mono text-white text-[1vw] h-10 font-slim  mr-5 z-50 relative
           "
           onMouseEnter={experienceChange}
           onClick={focusExperience}
           >
             {experience}
           </h1>
-          <h1 className="font-mono text-white text-[1vw] h-10 font-slim  mr-5
+          <h1 className="font-mono text-white text-[1vw] h-10 font-slim  mr-5 z-50 relative
           "
           onMouseEnter={skillChange}
           onClick={focusSkill}
           >
             {skill}
           </h1>
-          <h1 className="font-mono text-white text-[1vw] h-10 font-slim mr-5
+          <h1 className="font-mono text-white text-[1vw] h-10 font-slim mr-5 z-50 relative
           " 
            onMouseEnter={projectChange}
            onClick={focusProject}
             >
             {project}
             </h1>
-          <h1 className="font-mono text-white text-[1vw] h-10 font-slim
+          <h1 className="font-mono text-white text-[1vw] h-10 font-slim z-50 relative
           " 
            onMouseEnter={contactChange}
            onClick={focusContact}
