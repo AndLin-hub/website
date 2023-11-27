@@ -403,6 +403,30 @@ function App() {
     <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40 z-20">Project</motion.h6>
     <LayoutGroup>
     <motion.div>
+    <motion.div 
+    layout
+    className=
+    {
+      selectCard =="home" ?
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-red-500 to-red-300 text-white font-black text-2xl left-4/10 absolute p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto z-50"
+      :
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-red-500 to-red-300 text-white font-black text-2xl left-4/10 absolute p-5 rounded-2xl min-w-[12rem] min-h-[15rem] z-10"
+    }
+    onClick ={selectCard == "home" ? () => {setSelectCard(" ")}: () => {setSelectCard("home")}}
+    whileHover={selectCard != "home" ? { y:-20, x: -40} :{}}
+    whileTap={{scale:0.9}}
+    whileInView={selectCard != "home" ? {originX:0.5,originY:1,rotate:-65, transition:{delay:0.3}}: {transition:{delay:2}}}
+    transition={{duration:0.3}}
+    >
+      Home server
+
+      {
+        selectCard == "home" && 
+        <motion.h1 className="font-light mt-10 text-xl">
+          Built a home media server to host our local tv shows and movies. Using promox as a container manager for resources and VMs.
+        </motion.h1>
+      }
+    </motion.div>
     <motion.div className={
     selectCard == "fridge"?
     "h-[50vh] w-[20vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10  absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
@@ -476,9 +500,9 @@ function App() {
     className=
     {
       selectCard =="tickettek" ?
-      "h-[50vh] w-[20vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-violet-600 to-purple-400 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
       :
-      "h-[42vh] w-[15vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-violet-600 to-purple-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
     }
     onClick ={selectCard == "tickettek" ? () => {setSelectCard(" ")}: () => {setSelectCard("tickettek")}}
     whileHover={selectCard != "tickettek" ? { y:-20, x: 30} :{}}
@@ -496,9 +520,38 @@ function App() {
         </motion.h1>
       }
     </motion.div>
+
+    <motion.div 
+    layout
+    className=
+    {
+      selectCard =="capstone" ?
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-indigo-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
+      :
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-indigo-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+    }
+    onClick ={selectCard == "capstone" ? () => {setSelectCard(" ")}: () => {setSelectCard("capstone")}}
+    whileHover={selectCard != "capstone" ? { y:-20, x: 30} :{}}
+    whileTap={{scale:0.9}}
+    whileInView={selectCard != "capstone" ? {originX:0.5,originY:1,rotate:65, transition:{delay:0.3}}: {transition:{delay:2}}}
+    transition={{duration:0.3}}
+    >
+      Generative AI image discriminator 
+
+      {
+        selectCard == "capstone" && 
+        <motion.h1 className="font-light mt-10 text-xl">
+          Built a discriminator AI to determine if chest x-ray imaging were authentic or created by generative AI.
+          Made with three different discriminating machine learning algorithms to determine most efficient algorithm.
+        </motion.h1>
+      }
+    </motion.div>
+
+    
     </motion.div>
     </LayoutGroup>
     </div>
+    
 
 
 
