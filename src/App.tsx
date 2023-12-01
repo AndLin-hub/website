@@ -404,10 +404,9 @@ function App() {
     </div>
     <div className=' bg-black z-10 h-[100vh]' ref={projectRef}>
     <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40 z-20">Project</motion.h6>
-    <LayoutGroup>
     <motion.div>
     <motion.div 
-    layout
+    
     className=
     {
       selectCard =="home" ?
@@ -430,7 +429,9 @@ function App() {
         </motion.h1>
       }
     </motion.div>
-    <motion.div className={
+    <motion.div 
+    
+    className={
     selectCard == "fridge"?
     "h-[50vh] w-[20vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10  absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
     :
@@ -451,7 +452,7 @@ function App() {
       }
     </motion.div>
     <motion.div
-    layout
+    
     className={
       selectCard =="twitter" ?
       "h-[50vh] w-[20vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem] overflow-auto"
@@ -474,7 +475,8 @@ function App() {
     </motion.div>     
 
     <motion.div
-    layout className={
+     
+    className={
       selectCard == "bank" ?
       "h-[50vh] w-[20vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
       :
@@ -499,7 +501,7 @@ function App() {
     </motion.div>
 
     <motion.div 
-    layout
+    
     className=
     {
       selectCard =="tickettek" ?
@@ -525,7 +527,7 @@ function App() {
     </motion.div>
 
     <motion.div 
-    layout
+    
     className=
     {
       selectCard =="capstone" ?
@@ -552,7 +554,7 @@ function App() {
 
     
     </motion.div>
-    </LayoutGroup>
+
     </div>
     
 
