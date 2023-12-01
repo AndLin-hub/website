@@ -246,7 +246,8 @@ function App() {
         opacity: bwsInView ? 1 : 0,
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
       }}>
-      <motion.div layoutId={"as"}
+      <motion.div
+      layout
         onClick ={selectCard == "bws" ? () => {setSelectCard(" ")}: () => {setSelectCard("bws")}}
         ref={bwsRef}
         whileHover={{scale:1.2}}
@@ -294,7 +295,8 @@ function App() {
         opacity: chiInView ? 1 : 0,
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
       }}>
-      <motion.div layoutId={"as"}
+      <motion.div
+        layout
         ref={chiRef}
         className=
         {
@@ -338,7 +340,8 @@ function App() {
       opacity: cigInView ? 1 : 0,
       transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
       }}>
-     <motion.div layoutId={"as"}
+     <motion.div
+      layout
         ref={cigRef}
         className=
         {
