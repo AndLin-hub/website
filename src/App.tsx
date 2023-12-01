@@ -85,12 +85,7 @@ function App() {
       setMousePosition({ x: e.clientX, y: e.clientY });
     });
   }, []);
-  useEffect(() => {
-    if (mouse.current) {
-      mouse.current.style.top = mousePosition.y - 360 + "px";
-      mouse.current.style.left = mousePosition.x - 360  + "px";
-    }
-  },[mousePosition.x,mousePosition.y])
+
   const onButtonClick = () => {
     // using Java Script method to get PDF file
     fetch('andieLinResume.docx').then(response => {
@@ -152,28 +147,32 @@ function App() {
         <motion.div className='justify-evenly w-[25vw] flex mr-20 mt-4'
         initial={{opacity:0}}
         animate={{opacity:1,transition:{delay:2,}}}>
-          <h1 className="font-mono text-white text-[1vw] h-10 font-slim  mr-5 z-50 relative
+          <h1 className="font-mono text-white text-[1vw] h-[1.5vw] font-slim  mr-5 z-50 relative
+          hover:text-black hover:bg-white
           "
           onMouseEnter={experienceChange}
           onClick={focusExperience}
           >
             {experience}
           </h1>
-          <h1 className="font-mono text-white text-[1vw] h-10 font-slim  mr-5 z-50 relative
+          <h1 className="font-mono text-white text-[1vw] h-[1.5vw] font-slim  mr-5 z-50 relative
+          hover:text-black hover:bg-white
           "
           onMouseEnter={skillChange}
           onClick={focusSkill}
           >
             {skill}
           </h1>
-          <h1 className="font-mono text-white text-[1vw] h-10 font-slim mr-5 z-50 relative
+          <h1 className="font-mono text-white text-[1vw] h-[1.5vw] font-slim mr-5 z-50 relative
+          hover:text-black hover:bg-white
           " 
            onMouseEnter={projectChange}
            onClick={focusProject}
             >
             {project}
             </h1>
-          <h1 className="font-mono text-white text-[1vw] h-10 font-slim z-50 relative
+          <h1 className="font-mono text-white text-[1vw] h-[1.5vw] font-slim z-50 relative
+          hover:text-black hover:bg-white
           " 
            onMouseEnter={contactChange}
            onClick={focusContact}
