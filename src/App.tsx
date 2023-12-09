@@ -400,6 +400,10 @@ function App() {
     <p className="font-light">Django</p>
     <p className="font-light">FastAPI</p>
     </div>
+    <div className="font-black h-[30vh] w-[20vw] relative bg-gradient-to-l from-blue-700 to-fuchsia-700 left-1/4 rounded-xl p-4 z-30 text-white">Machine Learning
+    <p className="font-light">TensorFlow</p>
+    <p className="font-light">Sklearn</p>
+    </div>
     </div>
     <div className=' bg-black z-10 h-[100vh]' ref={projectRef}>
     <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40 z-20">Project</motion.h6>
@@ -530,14 +534,14 @@ function App() {
     className=
     {
       selectCard =="capstone" ?
-      "h-[50vh] w-[20vw] bg-gradient-to-b from-indigo-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-indigo-600 to-indigo-400 left-4/10 absolute text-white font-black text-2xl m-auto z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
       :
       "h-[42vh] w-[15vw] bg-gradient-to-b from-indigo-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
     }
     onClick ={selectCard == "capstone" ? () => {setSelectCard(" ")}: () => {setSelectCard("capstone")}}
     whileHover={selectCard != "capstone" ? { y:-20, x: 30} :{}}
     whileTap={{scale:0.9}}
-    whileInView={selectCard != "capstone" ? {originX:0.5,originY:1,rotate:65, transition:{delay:0.3}}: {transition:{delay:2}}}
+    whileInView={selectCard != "capstone" ? {originX:0.5,originY:1,rotate:60, transition:{delay:0.3}}: {transition:{delay:2}}}
     transition={{duration:0.3}}
     >
       Generative AI image discriminator 
@@ -550,7 +554,35 @@ function App() {
         </motion.h1>
       }
     </motion.div>
+     
+    <motion.div 
+    
+    className=
+    {
+      selectCard =="hotdog" ?
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-indigo-500 to-sky-500 left-4/10 absolute text-white font-black text-2xl m-auto z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
+      :
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-indigo-500 to-sky-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+    }
+    onClick ={selectCard == "hotdog" ? () => {setSelectCard(" ")}: () => {setSelectCard("hotdog")}}
+    whileHover={selectCard != "hotdog" ? { y:-20, x: 30} :{}}
+    whileTap={{scale:0.9}}
+    whileInView={selectCard != "hotdog" ? {originX:0.5,originY:1,rotate:75, transition:{delay:0.3}}: {transition:{delay:2}}}
+    transition={{duration:0.3}}
+    >
+      Not Hotdog
 
+      {
+        selectCard == "hotdog" && 
+        <motion.h1 className="font-light mt-10 text-xl">
+          But a image classification model with tensorflow to replicate an application from "Silicon Valley" with the ability to differientiate between
+          a hotdog and not a hotdog. This project let me learn how to train convolutional neural networks.
+          github:
+          https://github.com/AndLin-hub/nothotdog
+        </motion.h1>
+      }
+    </motion.div>
+     
     
     </motion.div>
 
