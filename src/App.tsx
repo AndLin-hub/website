@@ -472,7 +472,7 @@ function App() {
         selectCard == "twitter" &&
         <motion.h1 className="text-white font-light mt-10 text-xl">
           Built a website use to perform sentimental analysis on key phrases based on twitter's sentiment on topics. Used to determine if a topic has a negative or positive overview based on
-          most recent tweets about selected topic.
+          most recent tweets about selected topic. Learnt how to use Natural Language Processing model to create sentimental values to words.
         </motion.h1>
       }
     </motion.div>     
@@ -498,6 +498,7 @@ function App() {
         Bank Statement analysis application made during internship.
         Website made for in-house brokers' use to streamline the lender selection 
         process by extracting relevant data in bank statements to display simple measureable metrics. 
+        Learnt to use NextJS and FastAPI as well work in a professional environment and work with other collaborative stakeholders.
       </motion.h1>
       </>
     }
@@ -524,7 +525,8 @@ function App() {
         selectCard == "tickettek" && 
         <motion.h1 className="font-light mt-10 text-xl">
           Built a web scraper for tickettek using python and regex to play an sound alert whenever a ticket would restock. 
-          Personal project that used to experiment with web requests and learn how to use basic regex. 
+          Personal project that used to experiment with web requests and learn how to use basic regex. Used to better tickets for Blackpink
+          concert. <br/>
         </motion.h1>
       }
     </motion.div>
@@ -551,6 +553,10 @@ function App() {
         <motion.h1 className="font-light mt-10 text-xl">
           Built a discriminator AI to determine if chest x-ray imaging were authentic or created by generative AI.
           Made with three different discriminating machine learning algorithms to determine most efficient algorithm.
+          Learn to used different machine learning algorithms and how they work in classification. Learned to used sklearn 
+          libraries in making a models using SVM (support vector machines), logisitic regression, and KNN algorithms. <br/>
+          Github: <br/>
+          https://github.com/AndLin-hub/capstone
         </motion.h1>
       }
     </motion.div>
@@ -575,14 +581,13 @@ function App() {
       {
         selectCard == "hotdog" && 
         <motion.h1 className="font-light mt-10 text-xl">
-          But a image classification model with tensorflow to replicate an application from "Silicon Valley" with the ability to differientiate between
-          a hotdog and not a hotdog. This project let me learn how to train convolutional neural networks. 
-          github:
-          https://github.com/AndLin-hub/nothotdog
-          hosted Frontend on vercel using nextjs:
-          https://nothotdog-9oe7fub1g-andlin-hub.vercel.app/ (there is a issue with the cold run with google cloud run which requires long api calls which is blocked by vercel making it not usable online by runable locally)
-          hosted backend on cloud run using fastapi: 
-          https://hotdog-backend-nega5bzvfq-ts.a.run.app/docs
+          Build a image classification model with tensorflow to replicate an application from "Silicon Valley" with the ability to differientiate between
+          a hotdog and not a hotdog. This project let me learn how to train convolutional neural networks.  <br></br>
+          Built the backend with FastAPI which is hosted on the google cloud run, while the frontend is built with NextJS and hosted on Vercel.
+          Github:  <br></br>
+          https://github.com/AndLin-hub/nothotdog  <br></br>
+          Vercel Link: <br></br>
+          https://nothotdog-9oe7fub1g-andlin-hub.vercel.app/ (there is a issue with the cold run with google cloud run which requires long api calls which is blocked by vercel making it not usable online but runable locally)  <br></br>
         </motion.h1>
       }
     </motion.div>
