@@ -13,10 +13,13 @@ function App() {
   const chiRef =useRef<HTMLDivElement>(null)
   const bwsRef =useRef<HTMLDivElement>(null)
   const cigRef = useRef<HTMLDivElement>(null)
+  const skillRef = useRef<HTMLDivElement>(null)
+  const mouse = useRef<HTMLDivElement>(null)
   const [selectCard, setSelectCard] = useState<string>()
   const [mousePosition, setMousePosition] = useState({x:0 , y:0})
   const [name, setName] = useState("ANDIE LIN")
   const [project, setProject] = useState("PROJECT")
+  const [skill, setSkill] = useState("SKILL")
   const [experience, setExperience] = useState("EXPERIENCE")
   const [contact, setContact] = useState("CONTACT")
   const loanInView = useInView(loanRef, {once:true})
@@ -54,10 +57,9 @@ function App() {
   const projectChange = () =>{
     changeLetters("PROJECT",setProject)
   }
-  const onMouseMove = (e:any) =>{
-    setMousePosition({x: e.clientX ,y:e.clientY})
+  const skillChange = () =>{
+    changeLetters("SKILL",setSkill)
   }
-
   const focusExperience = () =>{
     experienceRef?.current?.scrollIntoView({behavior:'smooth'})
   }
@@ -67,13 +69,23 @@ function App() {
   const focusContact = () =>{
     contactRef?.current?.scrollIntoView({behavior:'smooth'})
   }
+  const focusSkill = () =>{
+    skillRef?.current?.scrollIntoView({behavior:'smooth'})
+  }
   useEffect(()=>{
     setTimeout(nameChange,1000)
     setTimeout(experienceChange,2000)
     setTimeout(contactChange,2000)
     setTimeout(projectChange,2000)
+    setTimeout(skillChange,2000)
     setTimeout(focusExperience,2500)
   },[])
+  useEffect(() => {
+    document.addEventListener("mousemove", (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    });
+  }, []);
+
   const onButtonClick = () => {
     // using Java Script method to get PDF file
     fetch('andieLinResume.docx').then(response => {
@@ -91,18 +103,17 @@ function App() {
   return (
     <>
       <div
-      onMouseMove={onMouseMove}
       className="overflow-hidden relative z-20"
       > 
       <motion.div 
-      animate={{left:mousePosition.x -360,
-      top:mousePosition.y-360,}}
+      animate={{left:mousePosition.x -100,top:mousePosition.y-100,}}
       transition={{duration:1}}
-      className={'h-[40rem] w-[40rem] fixed rounded-full bg-gradient-to-r from-purple-500 to-blue-500 rotate animate-spin-slow blur-xxl z-10'}/>
+      ref={mouse}
+      className={'h-[15rem] w-[15rem] fixed rounded-full bg-gradient-to-r from-purple-500 to-blue-500 animate-spin-slow blur-3xl z-10'}/>
       <motion.div className="bg-black max-h-screen max-w-screen w-screen h-screen flex overflow-hidden"
       transition={{delay:3, duration: 1}}
       > 
-        <nav className='fixed top-0 flex w-screen justify-between mt-10 z-20'>
+        <nav className='fixed top-0 flex w-screen justify-between mt-10 z-50'>
         <motion.div  
           variants={{
             mid:{
@@ -136,21 +147,32 @@ function App() {
         <motion.div className='justify-evenly w-[25vw] flex mr-20 mt-4'
         initial={{opacity:0}}
         animate={{opacity:1,transition:{delay:2,}}}>
-          <h1 className="font-mono text-white text-[1vw] h-10 font-slim  mr-5
+          <h1 className="font-mono text-white text-[1vw] h-[1.5vw] font-slim  mr-5 z-50 relative
+          hover:text-black hover:bg-white
           "
           onMouseEnter={experienceChange}
           onClick={focusExperience}
           >
             {experience}
           </h1>
-          <h1 className="font-mono text-white text-[1vw] h-10 font-slim mr-5
+          <h1 className="font-mono text-white text-[1vw] h-[1.5vw] font-slim  mr-5 z-50 relative
+          hover:text-black hover:bg-white
+          "
+          onMouseEnter={skillChange}
+          onClick={focusSkill}
+          >
+            {skill}
+          </h1>
+          <h1 className="font-mono text-white text-[1vw] h-[1.5vw] font-slim mr-5 z-50 relative
+          hover:text-black hover:bg-white
           " 
            onMouseEnter={projectChange}
            onClick={focusProject}
             >
             {project}
             </h1>
-          <h1 className="font-mono text-white text-[1vw] h-10 font-slim
+          <h1 className="font-mono text-white text-[1vw] h-[1.5vw] font-slim z-50 relative
+          hover:text-black hover:bg-white
           " 
            onMouseEnter={contactChange}
            onClick={focusContact}
@@ -164,8 +186,7 @@ function App() {
     <div>
 
     </div>
-    <div className=' bg-black flex flex-col' 
-        ref={experienceRef}>
+    <div className='bg-black overflow-hidden' ref={experienceRef}>
       
       <motion.h6 
       className="text-white relative text-[4vw] font-sans left-1/8 mt-40 mb-40 z-20">Experience</motion.h6>
@@ -188,7 +209,7 @@ function App() {
         animate={{}}
         className={
           selectCard =="intern" ?
-          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[40vh] w-[25vw] relative z-20 left-1/4 rounded-xl mb-[2vw] " :
+          "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[40vh] w-[25vw] relative z-20 left-1/4 rounded-xl mb-[2vw] overflow-auto" :
           "bg-gradient-to-l p-4 from-blue-700 to-fuchsia-700 bordered-xl h-[25vh] w-[21vw] relative z-20 left-1/4 rounded-xl mb-[2vw]"
         }
         >
@@ -220,12 +241,12 @@ function App() {
       </motion.div>
       </motion.div>
       <motion.div 
-      className="ml-[15rem]"
       style={{
         opacity: bwsInView ? 1 : 0,
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
       }}>
-      <motion.div layoutId={"as"}
+      <motion.div
+      layout
         onClick ={selectCard == "bws" ? () => {setSelectCard(" ")}: () => {setSelectCard("bws")}}
         ref={bwsRef}
         whileHover={{scale:1.2}}
@@ -235,13 +256,13 @@ function App() {
           `bg-gradient-to-r
         from-blue-700 to-purple-600
         p-4
-        bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw] z-20
-        `
+        bordered-xl h-[40vh] w-[25vw] relative left-6/10 rounded-xl mb-[2vw] z-20
+        overflow-auto`
           :
           `bg-gradient-to-r
         from-blue-700 to-purple-600
         p-4
-        bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw] z-20
+        bordered-xl h-[25vh] w-[21vw] relative left-6/10 rounded-xl mb-[2vw] z-20
         `}
          >
           <motion.h5 className="text-white justify-between flex">
@@ -273,12 +294,13 @@ function App() {
         opacity: chiInView ? 1 : 0,
         transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
       }}>
-      <motion.div layoutId={"as"}
+      <motion.div
+        layout
         ref={chiRef}
         className=
         {
           selectCard == "chicken" ?
-          "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-1/4 rounded-xl mb-[2vw] z-20" 
+          "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-1/4 rounded-xl mb-[2vw] z-20 overflow-auto" 
           :
         "bg-gradient-to-r p-4 from-rose-500 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-1/4 rounded-xl mb-[2vw] z-20"
         }
@@ -313,19 +335,19 @@ function App() {
       </motion.div>
       </motion.div>
      <motion.div
-     className="ml-[15rem]"
      style={{
       opacity: cigInView ? 1 : 0,
       transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
       }}>
-     <motion.div layoutId={"as"}
+     <motion.div
+      layout
         ref={cigRef}
         className=
         {
         selectCard =="cignall" ?
-        "bg-gradient-to-l p-4 from-red-400 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-2/4 rounded-xl mb-[2vw] z-20"
+        "bg-gradient-to-l p-4 from-red-400 to-blue-700 bordered-xl h-[40vh] w-[25vw] relative left-6/10 rounded-xl mb-[2vw] z-20 overflow-auto"
         :
-        "bg-gradient-to-l p-4  from-red-400 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-2/4 rounded-xl mb-[2vw] z-20"}
+        "bg-gradient-to-l p-4  from-red-400 to-blue-700 bordered-xl h-[25vh] w-[21vw] relative left-6/10 rounded-xl mb-[2vw] z-20"}
         whileHover={{scale:1.2}}
         whileTap={{scale:0.9}}
         onClick ={selectCard == "cignall" ? () => {setSelectCard(" ")}: () => {setSelectCard("cignall")}}
@@ -359,20 +381,66 @@ function App() {
       </motion.div>
      </motion.div>
      </LayoutGroup>
-     
     </div>
-    <div className=' bg-black flex flex-col z10 h-[100vh]' ref={projectRef}>
+    <div className=' bg-black z-10 overflow-hidden' ref={skillRef}>
+    <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40 z-20">Skills</motion.h6>
+    <div className="font-black h-[30vh] w-[20vw] relative bg-gradient-to-l from-blue-700 to-fuchsia-700 left-1/4 rounded-xl p-4 z-30 text-white">Frontend development
+    <p className="font-light">ReactJS</p>
+    <p className="font-light">Javascript/TypeScript</p>
+    <p className="font-light">Tailwind CSS</p>
+    <p>Framework</p>
+    <p className="font-light">NextJS</p>
+    </div>
+    <div className="font-black h-[35vh] w-[20vw] relative bg-gradient-to-l from-red-400 to-blue-700 left-6/10 rounded-xl p-4 z-30 text-white">Backend development
+    <p className="font-light">Python</p>
+    <p className="font-light">C++</p>
+    <p className="font-light">C</p>
+    <p className="font-light">Java</p>
+    <p>Framework</p>
+    <p className="font-light">Django</p>
+    <p className="font-light">FastAPI</p>
+    </div>
+    <div className="font-black h-[30vh] w-[20vw] relative bg-gradient-to-l from-blue-700 to-fuchsia-700 left-1/4 rounded-xl p-4 z-30 text-white">Machine Learning
+    <p className="font-light">TensorFlow</p>
+    <p className="font-light">Sklearn</p>
+    </div>
+    </div>
+    <div className=' bg-black z-10 h-[100vh]' ref={projectRef}>
     <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40 z-20">Project</motion.h6>
-    <LayoutGroup>
     <motion.div>
-    <motion.div className={
+    <motion.div 
+    
+    className=
+    {
+      selectCard =="home" ?
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-red-500 to-red-300 text-white font-black text-2xl left-4/10 absolute p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto z-50"
+      :
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-red-500 to-red-300 text-white font-black text-2xl left-4/10 absolute p-5 rounded-2xl min-w-[12rem] min-h-[15rem] z-10"
+    }
+    onClick ={selectCard == "home" ? () => {setSelectCard(" ")}: () => {setSelectCard("home")}}
+    whileHover={selectCard != "home" ? { y:-20, x: -40} :{}}
+    whileTap={{scale:0.9}}
+    whileInView={selectCard != "home" ? {originX:0.5,originY:1,rotate:-65, transition:{delay:0.3}}: {transition:{delay:2}}}
+    transition={{duration:0.3}}
+    >
+      Home server
+
+      {
+        selectCard == "home" && 
+        <motion.h1 className="font-light mt-10 text-xl">
+          Built a home media server to host our local tv shows and movies. Using promox as a container manager for resources and VMs.
+        </motion.h1>
+      }
+    </motion.div>
+    <motion.div 
+    
+    className={
     selectCard == "fridge"?
-    "h-[50vh] w-[20vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10  absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+    "h-[50vh] w-[20vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10  absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
     :
     "h-[45vh] w-[15vw] bg-gradient-to-b from-red-600 to-rose-400 shadow-md text-white font-black text-2xl left-4/10 absolute z-10 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"}
     whileHover={selectCard != "fridge" ?{y:-60,x:-30} :{}}
     whileTap={{scale:0.9}}
-    layout
     whileInView={selectCard != "fridge" ?{originX:0.5, originY:1, rotate:-35, transition:{delay:0.3}} :{}}
     onClick ={selectCard == "fridge" ? () => {setSelectCard(" ")}: () => {setSelectCard("fridge")}}
     transition={{duration:0.3}}
@@ -387,10 +455,10 @@ function App() {
       }
     </motion.div>
     <motion.div
-    layout
+    
     className={
       selectCard =="twitter" ?
-      "h-[50vh] w-[20vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem]"
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem] overflow-auto"
       :
       "h-[42vh] w-[15vw] bg-gradient-to-b from-fuchsia-600 to-red-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl  min-w-[12rem] min-h-[15rem]"}
     whileHover={selectCard != "twitter" ?{ y:-60,x:-30}:{}}
@@ -410,9 +478,10 @@ function App() {
     </motion.div>     
 
     <motion.div
-    layout className={
+     
+    className={
       selectCard == "bank" ?
-      "h-[50vh] w-[20vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
       :
       "h-[42vh] w-[15vw] bg-gradient-to-b from-purple-600 to-pink-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"}
     onClick ={selectCard == "bank" ? () => {setSelectCard(" ")}: () => {setSelectCard("bank")}}
@@ -435,13 +504,13 @@ function App() {
     </motion.div>
 
     <motion.div 
-    layout
+    
     className=
     {
       selectCard =="tickettek" ?
-      "h-[50vh] w-[20vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] "
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-violet-600 to-purple-400 text-white font-black text-2xl left-4/10 absolute z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
       :
-      "h-[42vh] w-[15vw] bg-gradient-to-b from-blue-600 to-purple-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-violet-600 to-purple-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
     }
     onClick ={selectCard == "tickettek" ? () => {setSelectCard(" ")}: () => {setSelectCard("tickettek")}}
     whileHover={selectCard != "tickettek" ? { y:-20, x: 30} :{}}
@@ -459,11 +528,73 @@ function App() {
         </motion.h1>
       }
     </motion.div>
+
+    <motion.div 
+    
+    className=
+    {
+      selectCard =="capstone" ?
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-indigo-600 to-indigo-400 left-4/10 absolute text-white font-black text-2xl m-auto z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
+      :
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-indigo-600 to-indigo-400 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+    }
+    onClick ={selectCard == "capstone" ? () => {setSelectCard(" ")}: () => {setSelectCard("capstone")}}
+    whileHover={selectCard != "capstone" ? { y:-20, x: 30} :{}}
+    whileTap={{scale:0.9}}
+    whileInView={selectCard != "capstone" ? {originX:0.5,originY:1,rotate:60, transition:{delay:0.3}}: {transition:{delay:2}}}
+    transition={{duration:0.3}}
+    >
+      Generative AI image discriminator 
+
+      {
+        selectCard == "capstone" && 
+        <motion.h1 className="font-light mt-10 text-xl">
+          Built a discriminator AI to determine if chest x-ray imaging were authentic or created by generative AI.
+          Made with three different discriminating machine learning algorithms to determine most efficient algorithm.
+        </motion.h1>
+      }
     </motion.div>
-    </LayoutGroup>
+     
+    <motion.div 
+    
+    className=
+    {
+      selectCard =="hotdog" ?
+      "h-[50vh] w-[20vw] bg-gradient-to-b from-indigo-500 to-sky-500 left-4/10 absolute text-white font-black text-2xl m-auto z-50 p-5 rounded-2xl min-w-[12rem] min-h-[15rem] overflow-auto"
+      :
+      "h-[42vh] w-[15vw] bg-gradient-to-b from-indigo-500 to-sky-500 text-white font-black text-2xl left-4/10 absolute z-30 p-5 rounded-2xl min-w-[12rem] min-h-[15rem]"
+    }
+    onClick ={selectCard == "hotdog" ? () => {setSelectCard(" ")}: () => {setSelectCard("hotdog")}}
+    whileHover={selectCard != "hotdog" ? { y:-20, x: 30} :{}}
+    whileTap={{scale:0.9}}
+    whileInView={selectCard != "hotdog" ? {originX:0.5,originY:1,rotate:75, transition:{delay:0.3}}: {transition:{delay:2}}}
+    transition={{duration:0.3}}
+    >
+      Not Hotdog
+
+      {
+        selectCard == "hotdog" && 
+        <motion.h1 className="font-light mt-10 text-xl">
+          But a image classification model with tensorflow to replicate an application from "Silicon Valley" with the ability to differientiate between
+          a hotdog and not a hotdog. This project let me learn how to train convolutional neural networks.
+          github:
+          https://github.com/AndLin-hub/nothotdog
+        </motion.h1>
+      }
+    </motion.div>
+     
+    
+    </motion.div>
+
     </div>
+    
+
+
+
+
+
     <div className=' bg-black flex flex-col z-50 h-[40vh]' ref={contactRef} >
-      <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-20">Contact</motion.h6>
+      <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-20 z-40">Contact</motion.h6>
       <div className='flex justify-evenly '>
         <IconContext.Provider value={{size:"3vw"}}>
         <div  className='text-white  z-20 text-center' >
