@@ -582,8 +582,8 @@ function App() {
         selectCard == "hotdog" && 
         <motion.h1 className="font-light mt-10 text-xl">
           Build a image classification model with tensorflow to replicate an application from "Silicon Valley" with the ability to differientiate between
-          a hotdog and not a hotdog. This project let me learn how to train convolutional neural networks.  <br></br>
-          Built the backend with FastAPI which is hosted on the google cloud run, while the frontend is built with NextJS and hosted on Vercel.
+          a hotdog and not a hotdog. This project let me learn how to train convolutional neural networks. 
+          Built the backend with FastAPI which is hosted on the google cloud run, while the frontend is built with NextJS and hosted on Vercel.<br></br>
           Github:  <br></br>
           https://github.com/AndLin-hub/nothotdog  <br></br>
           Vercel Link: <br></br>
