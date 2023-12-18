@@ -189,7 +189,7 @@ function App() {
     <div className='bg-black overflow-hidden' ref={experienceRef}>
       
       <motion.h6 
-      className="text-white relative text-[4vw] font-sans left-1/8 mt-40 mb-40 z-20">Experience</motion.h6>
+      className="text-white relative text-[4vw] font-sans left-1/8 mt-40 mb-40 z-20">Experience <a className ="text-white relative text-[1vw] font-sans left-1/8 mt-40 mb-40 z-20" > (expandable)</a> </motion.h6>
       <LayoutGroup>
 
       <motion.div 
@@ -406,7 +406,7 @@ function App() {
     </div>
     </div>
     <div className=' bg-black z-10 h-[100vh]' ref={projectRef}>
-    <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40 z-20">Project</motion.h6>
+    <motion.h6 className="text-white relative text-[4vw] font-sans left-1/8 mb-40 z-20">Projects</motion.h6>
     <motion.div>
     <motion.div 
     
