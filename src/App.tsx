@@ -556,7 +556,9 @@ function App() {
           Learn to used different machine learning algorithms and how they work in classification. Learned to used sklearn 
           libraries in making a models using SVM (support vector machines), logisitic regression, and KNN algorithms. <br/>
           Github: <br/>
+          <a href="https://github.com/AndLin-hub/capstone">
           https://github.com/AndLin-hub/capstone
+          </a>
         </motion.h1>
       }
     </motion.div>
@@ -585,9 +587,10 @@ function App() {
           a hotdog and not a hotdog. This project let me learn how to train convolutional neural networks. 
           Built the backend with FastAPI which is hosted on the google cloud run, while the frontend is built with NextJS and hosted on Vercel.<br></br>
           Github:  <br></br>
-          https://github.com/AndLin-hub/nothotdog  <br></br>
+          <a href="https://github.com/AndLin-hub/nothotdog"> https://github.com/AndLin-hub/nothotdog </a> <br></br>
           Vercel Link: <br></br>
-          https://nothotdog-9oe7fub1g-andlin-hub.vercel.app/ (there is a issue with the cold run with google cloud run which requires long api calls which is blocked by vercel making it not usable online but runable locally)  <br></br>
+          <a href="https://nothotdog-andlin-hub.vercel.app/"> https://nothotdog-andlin-hub.vercel.app/ </a> <br/>
+          (there is a issue with the cold run with google cloud run which requires long api calls which is blocked by vercel making it not usable online but runable locally)  <br></br>
         </motion.h1>
       }
     </motion.div>
